@@ -4,8 +4,9 @@ import SignUp from './pages/SignUp'
 
 const Routes = createAppContainer(
     createSwitchNavigator({
+        SignIn,
         SignUp,
-        SignIn
+        
     })
 );
 
