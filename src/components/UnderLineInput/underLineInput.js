@@ -2,11 +2,11 @@
 import { View, StyleSheet } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-
+import { Container } from './styles'
 
 export default function UnderLineInput(props) {
   return (
-    <View style={styles.textArea}>
+    <Container>
       <Icon name='account' size={24} />
         <TextInput 
             style={styles.underLine}
@@ -16,7 +16,7 @@ export default function UnderLineInput(props) {
             autoCorrect={false}  
         
         />
-    </View>
+    </Container>
   );
 }
 

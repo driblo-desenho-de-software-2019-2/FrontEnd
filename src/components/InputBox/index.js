@@ -1,21 +1,15 @@
 import React from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import { Container } from './style'
+import { Container, TInput } from './style';
+
 
 
 
 export default function InputBox(props) {
   return (
     <Container> 
-      <TextInput 
-        style={styles.inputBox} 
-        placeholder={props.text}
-        placeholderTextColor="#fff"
-        secureTextEntry={props.password}
-        autoCapitalize={'none'}
-        autoCorrect={false}  
-      /> 
+      <TInput placeholder={props.text} />
     </Container>
   );
 }
