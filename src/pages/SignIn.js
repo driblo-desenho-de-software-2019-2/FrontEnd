@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import { View , Text, StyleSheet, Image, TouchableOpacity}  from 'react-native';
-import InputBox from '../components/InputBox/index'
-import Buttons from '../components/sButton/Buttons'
+import InputBox from '../components/InputBox';
+import Buttons from '../components/sButton/Buttons';
 
 export default function SignIn({navigation}) {
 
@@ -13,18 +13,18 @@ export default function SignIn({navigation}) {
   const colors = ['#00FF9F','#10C971']
 
   return (
-     <LinearGradient style={styles.background} colors={['#10C971','#00FF9F']}> 
-      <Image 
+     <LinearGradient style={styles.background} colors={['#10C971','#00FF9F']}>
+      <Image
         source={require('../assets/driblo-logo.png')}
         style={styles.logo}
       />
-      
+
       <View style={styles.loginBoX}>
         <View  style={styles.container}>
           <InputBox text={'Email'} icon={'lock'} />
           <InputBox text={'Senha'} password={true}/>
           <Buttons funcao={handleSingUp} text={'Login'} colors={colors}/>
-          
+
           <View  style={{flexDirection:'row'}}>
             <TouchableOpacity onPress={handleSingUp}>
               <Text style={styles.linkText}>
@@ -38,13 +38,13 @@ export default function SignIn({navigation}) {
               </Text>
             </TouchableOpacity>
           </View>
-        
+
         </View>
       </View>
      </LinearGradient>
   );
 
- 
+
 }
 const styles = StyleSheet.create({
   background: {
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     width: 250,
     height: 220,
     resizeMode:'contain',
-  
+
   },
   loginBoX:{
 
