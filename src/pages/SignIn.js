@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import { View , Text, StyleSheet, Image, TouchableOpacity}  from 'react-native';
-import InputBox from '../components/InputBox/InputBox'
-import Buttons from '../components/sButton/Buttons'
+import InputBox from '../components/InputBox';
+import Buttons from '../components/sButton/Buttons';
 
 export default function SignIn({navigation}) {
 
