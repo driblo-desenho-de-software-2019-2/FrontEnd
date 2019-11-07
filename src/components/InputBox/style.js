@@ -5,7 +5,7 @@ export const Container = styled.View`
 `;
 
 export const TInput = styled.TextInput.attrs({
-    placeholderTextColor: 'rgba(255, 255, 255, 0.8)', 
+    placeholderTextColor: 'rgba(255, 255, 255, 0.8)',
   })`
     margin-top:25;
     height: 44;

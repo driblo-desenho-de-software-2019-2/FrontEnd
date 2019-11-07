@@ -1,34 +1,28 @@
 import React from 'react';
-import { View, TouchableOpacity, StyleSheet ,Text} from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient';
+import { ButtonText } from './styles'
 
-export default function Buttons(props) {
+export default function SButtons({text, ...rest}) {
   return (
-    <View>
-        <TouchableOpacity style={styles.buttonEffect} underlayColor='#fff'>
-            <LinearGradient onPress={props.funcao} style={styles.background} colors={props.colors}>
-                <Text style={styles.buttonText}>
-                    {props.text}
-                </Text>  
-            </LinearGradient>
-        </TouchableOpacity>
-    </View>
+    <TouchableOpacity {...rest}>
+        <LinearGradient colors={['#00FF9F','#10C971']} style={styles.degrade}>
+            <ButtonText >
+                {text}
+            </ButtonText>
+        </LinearGradient>
+    </TouchableOpacity>
+
   );
 }
 
 const styles = StyleSheet.create({
-    background:{
+    degrade:{
         height:44,
         alignItems:'center',
         justifyContent:'center',
         borderRadius: 15,
         marginTop:30,
-    
     },
-    buttonEffect:{
-        backgroundColor:'#fff'
-    },
-    buttonText:{
-        color:'#fff'
-    }
-});
+
+})
