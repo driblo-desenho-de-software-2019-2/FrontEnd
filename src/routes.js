@@ -5,10 +5,9 @@ import RegisterSkills from './pages/RegisterSkills/RegisterSkills'
 
 const Routes = createAppContainer(
     createSwitchNavigator({
-        RegisterSkills,
         SignIn,
         SignUp,
-
+        RegisterSkills,
     })
 );
 

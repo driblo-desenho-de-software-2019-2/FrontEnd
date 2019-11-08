@@ -15,7 +15,7 @@ export const PointsText = styled.Text`
 
 export const Header = styled.View`
 
-   flex-direction: row-reverse;
+   flex-direction: row;
    height: 130px;
 `;
 
@@ -45,4 +45,8 @@ export const Body = styled.ScrollView`
 export const Footer = styled.View`
 
     padding-bottom: 20px;
+`;
+
+export const SliderView = styled.View`
+    flex-direction: row;
 `;

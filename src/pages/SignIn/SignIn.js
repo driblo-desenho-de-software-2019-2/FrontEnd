@@ -38,7 +38,7 @@ export default function SignIn({navigation}) {
           <SButtons onPress={() =>{}} text={'Login'} colors={['#00FF9F','#10C971']}/>
 
 
-          <View  style={{flexDirection:'row'}}>
+          <View  style={{justifyContent:"space-between",flexDirection:'row'}}>
             <TouchableOpacity onPress={handleSingUp}>
               <LinkText>
                 Criar Conta

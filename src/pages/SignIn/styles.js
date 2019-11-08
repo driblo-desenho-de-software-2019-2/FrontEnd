@@ -2,8 +2,8 @@ import styled from 'styled-components/native';
 
 export const LoginBox = styled.View`
     background-color: rgb(255,255,255);
-    width: 290;
-    height: 270;
+    width: 330;
+    height: 300;
     border-radius: 10;
     align-items: center;
 `;
@@ -17,7 +17,7 @@ export const Container = styled.View`
 export const LinkText = styled.Text`
     color:rgb(8, 189, 100);
     font-weight:bold;
-    padding:0px 20px;
-    margin-top:20px;
+    padding:0px 10px;
+    margin-top:30px;
 
 `;

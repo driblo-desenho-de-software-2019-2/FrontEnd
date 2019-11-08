@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import { Text,ImageBackground, StyleSheet} from 'react-native';
+import { View,Text,ImageBackground, StyleSheet} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import { Points, PointsText, Header,Body, Footer, SkillText,HeaderText } from './styles';
+import { Points, PointsText, Header,Body, Footer, SkillText,HeaderText, SliderView } from './styles';
 import SButtons from '../../components/sButton/Buttons';
 import Slider from '@react-native-community/slider';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -10,17 +10,26 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 export default function RegisterSkills({navigation}) {
 
     const [pointsLeft, setPointsLeft] = useState(100);
-    const [velocityPoints, setVelocityPoints] = useState();
+    const [velocityPoints, setVelocityPoints] = useState(0);
+    const [kickPoints, setKickPoints] = useState(0);
+    const [defensePoints, setDefensePoints] = useState(0);
+    const [tricksPoints, setTricksPoints] = useState(0);
+    const [passPoints, setPassPoints] = useState(0);
 
-    function handlePoints(skill) {
 
-
-    }
 
   return (
     <LinearGradient style={styles.background} colors={['#f3f3f3','#ededed']}>
         <ImageBackground source={require('../../assets/driblo-logo-preta.png')} imageStyle={{opacity:0.05}} style={styles.logo}>
         <Header>
+        <Icon
+            name="arrow-left"
+            size={30}
+            color={'#10C971'}
+            style={{alignSelf:'flex-start', paddingTop:20, marginEnd:1,}}
+            onPress={() =>{navigation.navigate('SignUp')}}
+            />
+            <HeaderText>Pontos restantes</HeaderText>
             <Points>
                 <LinearGradient style={styles.points} colors={['#00FF9F','#10C971']}>
                     <PointsText>
@@ -28,56 +37,77 @@ export default function RegisterSkills({navigation}) {
                     </PointsText>
                 </LinearGradient>
             </Points>
-            <HeaderText>Pontos restantes</HeaderText>
-            <Icon
-            name="arrow-left"
-            size={30}
-            color={'#10C971'}
-            style={{alignSelf:'flex-start', paddingTop:20, marginEnd:1,}}
-            onPress={() =>{navigation.navigate('SignUp')}}
-            />
-        </Header>
 
+
+        </Header>
         <Body>
-            <SkillText>Chute</SkillText>
+            <SliderView>
+                <SkillText>Chute</SkillText>
+                <SkillText style={{marginLeft:235,}}>{kickPoints}pts</SkillText>
+            </SliderView>
+
             <Slider
-                onSlidingComplete={handlePoints}
+                onValueChange={setKickPoints}
+                value={kickPoints}
                 style={styles.slider}
                 minimumValue={0}
-                maximumValue={100}
-                step={10}
+                maximumValue={pointsLeft}
+                step={5}
+                thumbTintColor={'#10C971'}
+                minimumTrackTintColor={'#00FF9F'}
+
             />
-            <SkillText>Passe</SkillText>
+            <SliderView>
+                <SkillText>Passe</SkillText>
+                <SkillText style={{marginLeft:235,}}>{passPoints}pts</SkillText>
+            </SliderView>
+            <Slider
+                onSlidingComplete={setPassPoints}
+                style={styles.slider}
+                minimumValue={0}
+                maximumValue={pointsLeft}
+                step={5}
+                thumbTintColor={'#10C971'}
+                minimumTrackTintColor={'#00FF9F'}
+            />
+            <SliderView>
+                <SkillText>Drible</SkillText>
+                <SkillText style={{marginLeft:235,}}>{tricksPoints}pts</SkillText>
+            </SliderView>
+            <Slider
+                onSlidingComplete={setTricksPoints}
+                style={styles.slider}
+                minimumValue={0}
+                maximumValue={pointsLeft}
+                step={5}
+                thumbTintColor={'#10C971'}
+                minimumTrackTintColor={'#00FF9F'}
+            />
+            <SliderView>
+                <SkillText>Velocidade</SkillText>
+                <SkillText style={{marginLeft:'50%'}}>{velocityPoints}pts</SkillText>
+            </SliderView>
             <Slider
                 onSlidingComplete={setVelocityPoints}
                 style={styles.slider}
                 minimumValue={0}
-                maximumValue={100}
-                step={10}
+                maximumValue={pointsLeft}
+                step={5}
+                thumbTintColor={'#10C971'}
+                minimumTrackTintColor={'#00FF9F'}
             />
-            <SkillText>Drible</SkillText>
+            <SliderView>
+                <SkillText>Defesa</SkillText>
+                <SkillText style={{marginLeft:225,}}>{defensePoints}pts</SkillText>
+            </SliderView>
             <Slider
-                onSlidingComplete={setVelocityPoints}
+                onSlidingComplete={setDefensePoints}
                 style={styles.slider}
                 minimumValue={0}
-                maximumValue={100}
-                step={10}
-            />
-            <SkillText>Velocidade</SkillText>
-            <Slider
-                onSlidingComplete={setVelocityPoints}
-                style={styles.slider}
-                minimumValue={0}
-                maximumValue={100}
-                step={10}
-            />
-            <SkillText>Defesa</SkillText>
-            <Slider
-                onSlidingComplete={setVelocityPoints}
-                style={styles.slider}
-                minimumValue={0}
-                maximumValue={100}
-                step={10}
+                maximumValue={pointsLeft}
+                step={5}
+                thumbTintColor={'#10C971'}
+                minimumTrackTintColor={'#00FF9F'}
             />
 
         </Body>
