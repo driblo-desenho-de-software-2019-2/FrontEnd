@@ -34,7 +34,6 @@ if(!isLoading){
       </View>
       <FlatList
         data={DATA}
-        //keyExtractor={(x, i) => i}
         renderItem={({ item }) =>
           <ListItem
             leftAvatar={{ source: { uri: item.picture } }}
