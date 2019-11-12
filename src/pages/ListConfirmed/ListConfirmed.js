@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { View,Text,FlatList,StyleSheet } from 'react-native';
+import { View,FlatList } from 'react-native';
 import SButtons from '../../components/sButton/Buttons';
-import { ListBox, MenuBox } from './styles';
 import { ListItem, Button } from "react-native-elements";
-import { Divider } from 'react-native-elements';
-
-
+import FAB from 'react-native-fab'
 
 export default function ListConfirmed() {
   
@@ -46,6 +43,7 @@ if(!isLoading){
             bottomDivider            
           />}
       />
+      <FAB snackOffset= {60} buttonColor="#10C971" iconTextColor="#FFFFFF" onClickAction={() => { /*FUNCAO*/ }} visible={true} />
   </View>
   );
 } else 
