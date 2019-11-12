@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { View,FlatList } from 'react-native';
 import SButtons from '../../components/sButton/Buttons';
 import { ListItem, Button } from "react-native-elements";
-import FAB from 'react-native-fab'
+import SmallButtons from '../../components/SmallButton/Buttons';
+import FAB from 'react-native-fab';
 
 export default function ListConfirmed() {
   
@@ -26,10 +27,10 @@ if(!isLoading){
     <View>
       <View style={{flexDirection:'row',justifyContent:'space-between', height:'12%', alignItems:'center'}}>
         <View style={{width:'38%',marginBottom:30}}>
-          <SButtons text='Sortear times'/>
+          <SmallButtons text='Sortear times'/>
         </View>
         <View style={{width:'38%',marginBottom:30}}>
-          <SButtons text='Convidar'/>
+          <SmallButtons text='Convidar'/>
         </View>
       </View>
       <FlatList
