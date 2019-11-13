@@ -7,79 +7,73 @@ import InputBox from '../../components/InputBox/index';
 import SButtons from '../../components/sButton/Buttons';
 
 const styles = StyleSheet.create({
-    background: {
-        flex: 1,
-        alignItems: 'center',
-        paddingHorizontal: 20,
-    },
-    logo: {
-        width: '100%',
-        height: '100%',
-    },
+  background: {
+    flex: 1,
+    alignItems: 'center',
+    paddingHorizontal: 20,
+  },
+  logo: {
+    width: '100%',
+    height: '100%',
+  },
 });
 
 // eslint-disable-next-line react/prop-types
 export default function SignUp({navigation}) {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setconfirmPassword] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setconfirmPassword] = useState('');
 
-    return (
-        <LinearGradient
-            style={styles.background}
-            colors={['#f3f3f3', '#ededed']}>
-            <ImageBackground
-                // eslint-disable-next-line global-require
-                source={require('../../assets/driblo-logo-preta.png')}
-                imageStyle={{opacity: 0.05}}
-                style={styles.logo}>
-                <Icon
-                    name="arrow-left"
-                    size={30}
-                    color="#10C971"
-                    style={{alignSelf: 'flex-start', paddingTop: 20}}
-                    onPress={() => {
-                        // eslint-disable-next-line react/prop-types
-                        navigation.navigate('SignIn');
-                    }}
-                />
+  return (
+    <LinearGradient style={styles.background} colors={['#f3f3f3', '#ededed']}>
+      <ImageBackground
+        // eslint-disable-next-line global-require
+        source={require('../../assets/driblo-logo-preta.png')}
+        imageStyle={{opacity: 0.05}}
+        style={styles.logo}>
+        <Icon
+          name="arrow-left"
+          size={30}
+          color="#10C971"
+          style={{alignSelf: 'flex-start', paddingTop: 20}}
+          onPress={() => {
+            // eslint-disable-next-line react/prop-types
+            navigation.navigate('SignIn');
+          }}
+        />
 
-                <Container>
-                    <InputBox text="Nome" value={name} onChangeText={setName} />
-                    <InputBox
-                        text="Email"
-                        value={email}
-                        onChangeText={setEmail}
-                    />
+        <Container>
+          <InputBox text="Nome" value={name} onChangeText={setName} />
+          <InputBox text="Email" value={email} onChangeText={setEmail} />
 
-                    <InputBox
-                        text="Senha"
-                        value={password}
-                        onChangeText={setPassword}
-                        password
-                    />
-                    <InputBox
-                        text="Confirme a senha"
-                        value={confirmPassword}
-                        onChangeText={setconfirmPassword}
-                        password
-                    />
+          <InputBox
+            text="Senha"
+            value={password}
+            onChangeText={setPassword}
+            password
+          />
+          <InputBox
+            text="Confirme a senha"
+            value={confirmPassword}
+            onChangeText={setconfirmPassword}
+            password
+          />
 
-                    <Picker style={{height: 50, width: 100}}>
-                        <Picker.Item label="Java" value="java" />
-                        <Picker.Item label="JavaScript" value="js" />
-                    </Picker>
+          <Picker style={{height: 50, width: 100}}>
+            <Picker.Item label="Java" value="java" />
+            <Picker.Item label="JavaScript" value="js" />
+          </Picker>
 
-                    <SButtons
-                        onPress={() => {
-                            // eslint-disable-next-line react/prop-types
-                            navigation.navigate('RegisterSkills');
-                        }}
-                        text="Próximo"
-                    />
-                </Container>
-            </ImageBackground>
-        </LinearGradient>
-    );
+          <SButtons
+            onPress={() => {
+              // eslint-disable-next-line react/prop-types
+              navigation.navigate('RegisterSkills');
+            }}
+            text="Próximo"
+          />
+        </Container>
+      </ImageBackground>
+    </LinearGradient>
+  );
 }
