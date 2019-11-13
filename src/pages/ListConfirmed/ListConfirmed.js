@@ -4,6 +4,7 @@ import SButtons from '../../components/sButton/Buttons';
 import { ListItem, Button, Overlay,Text } from "react-native-elements";
 import SmallButtons from '../../components/SmallButton/Buttons';
 import FAB from 'react-native-fab';
+import { Icon } from 'react-native-vector-icons/MaterialIcons';
 
 export default function ListConfirmed() {
   
@@ -61,9 +62,10 @@ if(!isLoading){
             },
               shadowOpacity: 0.58,
               shadowRadius: 16.00,
-              elevation: 12,
+              elevation: 5,
             }}
             title='RECUSAR'
+            onPress={()=>setVisible(false)}
           />
           <Button
             buttonStyle={{
@@ -73,14 +75,14 @@ if(!isLoading){
             },
               shadowOpacity: 0.58,
               shadowRadius: 16.00,
-              elevation: 12,
+              elevation: 5,
               backgroundColor:'#00FF9F', 
               marginLeft:20,
               marginRight:0, 
               borderRadius:10
             }}
             title='CONFIRMAR'
-            
+            onPress={()=>setVisible(false)}
           />
           </View>
       </Overlay>
@@ -102,7 +104,14 @@ if(!isLoading){
             bottomDivider            
           />}
       />
-      <FAB snackOffset= {80} buttonColor="#10C971" iconTextColor="#FFFFFF" onClickAction={() => {setVisible(true)}} visible={true} />
+      <FAB 
+          snackOffset= {80} 
+          buttonColor="#10C971" 
+          iconTextColor="#FFFFFF" 
+          onClickAction={() => {setVisible(true)}} 
+          visible={true} 
+          iconTextComponent={<Text>✔</Text>} 
+        />
   </View>
   );
 } else 
