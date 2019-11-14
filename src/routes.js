@@ -6,10 +6,11 @@ import Profile from './pages/Profile/Profile'
 
 const Routes = createAppContainer(
     createSwitchNavigator({
-
+        Profile,
         SignIn,
         SignUp,
         RegisterSkills,
+
     })
 );
 
