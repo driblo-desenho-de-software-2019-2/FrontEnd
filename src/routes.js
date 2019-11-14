@@ -1,6 +1,8 @@
 /* eslint-disable react/react-in-jsx-scope */
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
+
+// páginas
 import SignIn from './pages/SignIn/SignIn';
 import SignUp from './pages/SignUp/SignUp';
 import RegisterSkills from './pages/RegisterSkills/RegisterSkills';
@@ -19,31 +21,30 @@ const Routes = createAppContainer(
       }),
       App: createMaterialTopTabNavigator(
         {
-          Home: {
+          Home1: {
             screen: Home,
-            navigationOptions: {
-              headerTitle: 'SignIn',
-            },
+            showIcon: true,
           },
-          SignIn: {
+          Home2: {
             screen: Home,
-            navigationOptions: {
-              headerTitle: 'SignUp',
-            },
+          },
+          Home3: {
+            screen: Home,
           },
         },
         {
           tabBarOptions: {
             labelStyle: {
-              fontSize: 20,
+              fontSize: 15,
               color: 'black',
             },
             tabStyle: {
-              height: 70,
+              height: 80,
             },
             style: {
               backgroundColor: 'white',
             },
+            showIcon: true,
           },
         }
       ),

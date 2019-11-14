@@ -1,8 +1,6 @@
 import React from 'react';
 
-import {View, Text} from 'react-native';
-
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import {View, Text, Image} from 'react-native';
 
 // import { Container } from './styles';
 
@@ -15,9 +13,12 @@ export default function Home() {
 }
 
 Home.navigationOptions = {
-  tabBarLabel: 'Perfil',
-  // eslint-disable-next-line react/prop-types
-  tabBarIcon: ({tintColor}) => (
-    <Icon name="account-circle" size={40} color={tintColor} />
+  tabBarLabel: 'Teste',
+  tabBarIcon: () => (
+    <Image
+      // eslint-disable-next-line global-require
+      source={require('../../assets/account_circle_black.png')}
+      style={{width: 50, height: 50}}
+    />
   ),
 };
