@@ -2,18 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { View,FlatList } from 'react-native';
 import SButtons from '../../components/sButton/Buttons';
 import { ListItem, Button, Overlay,Text } from "react-native-elements";
-import SmallButtons from '../../components/SmallButton/Buttons';
+import SmallButtons from '../../components/SmallButton/SmallButtons';
 import FAB from 'react-native-fab';
 import { Icon } from 'react-native-vector-icons/MaterialIcons';
+import { Container } from './styles'
 
 export default function ListConfirmed() {
-  
+
   const [DATA, setData] = useState(undefined);
   const [isLoading, setLoading] = useState(true);
   const [isVisible, setVisible] = useState(false);
   const [isRandom, setRandom] = useState(false);
   const [peladaDate,setPeladaDate] = useState({dia:'XX/XX/XXXX',hora:'XX:XX'});
-  
+
 useEffect(()=> {
  const fetchData = async () => {
     const response = await fetch("http://www.json-generator.com/api/json/get/bRDVHpqLkO?indent=2");
@@ -26,13 +27,13 @@ useEffect(()=> {
   fetchData();
 },[])
 
-if(!isLoading){
+if(true){
   return (
     <View>
-      <Overlay  
-        onBackdropPress={()=>{setVisible(false)}} 
-        isVisible={isVisible} 
-        windowBackgroundColor="rgba(255, 255, 255, .5)" 
+      <Overlay
+        onBackdropPress={()=>{setVisible(false)}}
+        isVisible={isVisible}
+        windowBackgroundColor="rgba(255, 255, 255, .5)"
         overlayBackgroundColor="#10A971"
         width={'70%'}
         height={'40%'}
@@ -54,8 +55,8 @@ if(!isLoading){
           <View style={{flexDirection:'row',marginTop:50,justifyContent:'space-between'}}>
           <Button
             buttonStyle={{
-              backgroundColor:'red', 
-              width:110, 
+              backgroundColor:'red',
+              width:110,
               borderRadius:10,
               shadowOffset: {
               width: 0,
@@ -77,9 +78,9 @@ if(!isLoading){
               shadowOpacity: 0.58,
               shadowRadius: 16.00,
               elevation: 5,
-              backgroundColor:'#00FF9F', 
+              backgroundColor:'#00FF9F',
               marginLeft:20,
-              marginRight:0, 
+              marginRight:0,
               borderRadius:10
             }}
             title='CONFIRMAR'
@@ -88,10 +89,10 @@ if(!isLoading){
           </View>
       </Overlay>
 
-      <Overlay  
-        onBackdropPress={()=>{setRandom(false)}} 
-        isVisible={isRandom} 
-        windowBackgroundColor="rgba(255, 255, 255, .5)" 
+      <Overlay
+        onBackdropPress={()=>{setRandom(false)}}
+        isVisible={isRandom}
+        windowBackgroundColor="rgba(255, 255, 255, .5)"
         overlayBackgroundColor="#10A971"
         width={'70%'}
         height={'25%'}
@@ -111,8 +112,8 @@ if(!isLoading){
           <View style={{flexDirection:'row',marginTop:50,justifyContent:'space-between'}}>
           <Button
             buttonStyle={{
-              backgroundColor:'red', 
-              width:110, 
+              backgroundColor:'red',
+              width:110,
               borderRadius:10,
               shadowOffset: {
               width: 0,
@@ -134,9 +135,9 @@ if(!isLoading){
               shadowOpacity: 0.58,
               shadowRadius: 16.00,
               elevation: 5,
-              backgroundColor:'#00FF9F', 
+              backgroundColor:'#00FF9F',
               marginLeft:20,
-              marginRight:0, 
+              marginRight:0,
               borderRadius:10
             }}
             title='CONFIRMAR'
@@ -147,10 +148,10 @@ if(!isLoading){
 
       <View style={{backgroundColor:'#FFF',flexDirection:'row',justifyContent:'space-between', height:'12%', alignItems:'center'}}>
         <View style={{marginLeft:20, marginRight:20,width:'38%',marginBottom:30}}>
-          <SmallButtons onPress={()=>{setRandom(true)}} text='Sortear times'/>
+          <SmallButtons onPress={()=>{setRandom(true)}} iconName={'shuffle'} text='Sortear times'/>
         </View>
         <View style={{width:'38%',marginBottom:30,marginLeft:25, marginRight:25}}>
-          <SmallButtons text='Convidar'/>
+          <SmallButtons iconName="person-add" text='Convidar'/>
         </View>
       </View>
       <FlatList
@@ -160,20 +161,20 @@ if(!isLoading){
             leftAvatar={{ source: { uri: item.picture } }}
             title={item.name}
             subtitle = {item.isActive ? 'Confirmado' : 'Não Confirmado' }
-            bottomDivider            
+            bottomDivider
           />}
       />
-      <FAB 
-          snackOffset= {80} 
-          buttonColor="#10C971" 
-          iconTextColor="#FFFFFF" 
-          onClickAction={() => {setVisible(true)}} 
-          visible={true} 
-          iconTextComponent={<Text>✔</Text>} 
+      <FAB
+          snackOffset= {80}
+          buttonColor="#10C971"
+          iconTextColor="#FFFFFF"
+          onClickAction={() => {setVisible(true)}}
+          visible={true}
+          iconTextComponent={<Text>✔</Text>}
         />
   </View>
   );
-} else 
+} else
   {
     return(
       <View style={{flex:1, marginTop:280}}>

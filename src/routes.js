@@ -6,10 +6,11 @@ import ListConfirmed from  './pages/ListConfirmed/ListConfirmed'
 
 const Routes = createAppContainer(
     createSwitchNavigator({
+        ListConfirmed,
         SignIn,
         SignUp,
         RegisterSkills,
-        ListConfirmed,
+
     })
 );
 
