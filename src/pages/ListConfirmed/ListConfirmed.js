@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { View,FlatList } from 'react-native';
-import SButtons from '../../components/sButton/Buttons';
 import { ListItem, Button, Overlay,Text } from "react-native-elements";
 import SmallButtons from '../../components/SmallButton/SmallButtons';
 import FAB from 'react-native-fab';
-import { Icon } from 'react-native-vector-icons/MaterialIcons';
-import { Container } from './styles'
+import Icon from 'react-native-vector-icons/MaterialIcons'
+import { Title, DateTime, AnswerView,AnswerText} from './styles'
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function ListConfirmed() {
 
@@ -27,66 +27,42 @@ useEffect(()=> {
   fetchData();
 },[])
 
-if(true){
+if(!isLoading){
   return (
     <View>
       <Overlay
         onBackdropPress={()=>{setVisible(false)}}
         isVisible={isVisible}
         windowBackgroundColor="rgba(255, 255, 255, .5)"
-        overlayBackgroundColor="#10A971"
-        width={'70%'}
-        height={'40%'}
+        overlayBackgroundColor="#08BD64"
+        height={250}
+        width={280}
         overlayStyle={{
-          borderRadius: 30,shadowColor: "#000",
-          shadowOffset: {
-            width: 0,
-            height: 12,
-          },
-          shadowOpacity: 0.58,
-          shadowRadius: 16.00,
-          elevation: 24,
-          alignItems:'center',
+            borderRadius:16,
+
+            alignItems:'center',
+            justifyContent:'center'
         }}
       >
-          <Text h4 style={{color:'white'}}>Confirmar Presença</Text>
-          <Text h5 style={{color:'white', marginTop:50}}>Dia: {peladaDate.dia}</Text>
-          <Text h5 style={{color:'white', marginTop:10}}>Hora: {peladaDate.hora}</Text>
-          <View style={{flexDirection:'row',marginTop:50,justifyContent:'space-between'}}>
-          <Button
-            buttonStyle={{
-              backgroundColor:'red',
-              width:110,
-              borderRadius:10,
-              shadowOffset: {
-              width: 0,
-              height: 12,
-            },
-              shadowOpacity: 0.58,
-              shadowRadius: 16.00,
-              elevation: 5,
-            }}
-            title='RECUSAR'
-            onPress={()=>setVisible(false)}
-          />
-          <Button
-            buttonStyle={{
-              shadowOffset: {
-              width: 0,
-              height: 12,
-            },
-              shadowOpacity: 0.58,
-              shadowRadius: 16.00,
-              elevation: 5,
-              backgroundColor:'#00FF9F',
-              marginLeft:20,
-              marginRight:0,
-              borderRadius:10
-            }}
-            title='CONFIRMAR'
-            onPress={()=>setVisible(false)}
-          />
-          </View>
+            <Title>Confirmar presença</Title>
+            <View style={{flexDirection:'row'}}>
+                <DateTime>Dia : </DateTime>
+                <DateTime>{peladaDate.dia}</DateTime>
+            </View>
+
+            <View style={{flexDirection:'row'}}>
+                <DateTime>Hora : </DateTime>
+                <DateTime>{peladaDate.hora}</DateTime>
+            </View>
+            <View style={{flexDirection:'row'}}>
+                <TouchableOpacity>
+                    <AnswerText>Confirmar</AnswerText>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <AnswerText>Cancelar</AnswerText>
+                </TouchableOpacity>
+            </View>
+
       </Overlay>
 
       <Overlay
@@ -170,7 +146,7 @@ if(true){
           iconTextColor="#FFFFFF"
           onClickAction={() => {setVisible(true)}}
           visible={true}
-          iconTextComponent={<Text>✔</Text>}
+          iconTextComponent={<Icon name={'check'} />}
         />
   </View>
   );
