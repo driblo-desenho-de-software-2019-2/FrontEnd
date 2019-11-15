@@ -3,6 +3,8 @@ import { View, StyleSheet,ImageBackground } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import InputBox from '../../components/InputBox/index'
+import SButton from '../../components/sButton/Buttons'
+import DatePicker from '../../components/DatePicker/DatePicker'
 
 // import { Container } from './styles';
 
@@ -27,6 +29,7 @@ export default function RegisterGame({ navigation }) {
                 onChangeText={setName}
             />
 
+            <DatePicker/>
         </ImageBackground>
     </LinearGradient>
   );
