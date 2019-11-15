@@ -6,6 +6,7 @@ import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
 import SignIn from './pages/SignIn/SignIn';
 import SignUp from './pages/SignUp/SignUp';
 import RegisterSkills from './pages/RegisterSkills/RegisterSkills';
+
 import Home from './pages/Home';
 
 // deve ser verificado este valor para saber ser o usuario está ou não "Logado" e depois renderizar a respectiva tela
@@ -21,28 +22,29 @@ const Routes = createAppContainer(
       }),
       App: createMaterialTopTabNavigator(
         {
-          Home1: {
-            screen: Home,
-            showIcon: true,
-          },
-          Home2: {
-            screen: Home,
-          },
-          Home3: {
+          Home: {
             screen: Home,
           },
         },
         {
           tabBarOptions: {
-            labelStyle: {
-              fontSize: 15,
-              color: 'black',
-            },
             tabStyle: {
               height: 80,
             },
             style: {
               backgroundColor: 'white',
+              elevation: 0,
+            },
+            indicatorStyle: {
+              backgroundColor: 'transparent',
+              alignContent: 'center',
+              borderRadius: 50,
+              borderColor: '#00FF9F',
+              borderWidth: 3,
+              height: 60,
+              width: 60,
+              marginBottom: 15,
+              marginLeft: 43,
             },
             showIcon: true,
           },

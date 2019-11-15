@@ -1,14 +1,14 @@
-import React from 'react';
+import {React} from 'react';
 
-import {View, Text, Image} from 'react-native';
+import {Text, Image} from 'react-native';
 
-// import { Container } from './styles';
+import {Container, GroupIcon, TabBarLabel} from './styles';
 
 export default function Home() {
   return (
-    <View>
+    <Container>
       <Text>Home</Text>
-    </View>
+    </Container>
   );
 }
 
@@ -17,7 +17,7 @@ Home.navigationOptions = {
   tabBarIcon: () => (
     <Image
       // eslint-disable-next-line global-require
-      source={require('../../assets/account_circle_black.png')}
+      source={require('../../assets/soccerGroup.png')}
       style={{width: 50, height: 50}}
     />
   ),
