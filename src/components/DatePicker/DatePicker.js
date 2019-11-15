@@ -9,16 +9,22 @@ export default class DatePicker extends Component {
     date: new Date(),
     mode: 'date',
     show: false,
-    dateString: 'Informe o dia da pelada'
+    dateString: 'Informe o dia da pelada',
+    icon: 'calendar-month',
   }
 
   setDate = (event, date) => {
     date = date || this.state.date;
+    let dateString = date.toLocaleDateString();
+
+    if(this.props.mode === 'time'){
+        dateString = date.toLocaleTimeString();
+    }
 
     this.setState({
       show: Platform.OS === 'ios' ? true : false,
       date,
-      dateString: date.toDateString(),
+      dateString: dateString,
     });
   }
 
@@ -33,6 +39,15 @@ export default class DatePicker extends Component {
     this.show('date');
   }
 
+  componentDidMount(){
+      if(this.props.mode == 'time'){
+        this.setState({
+            icon: 'clock-outline',
+            dateString: 'Informe a hora da pelada'
+        })
+      }
+  }
+
   render() {
     const { show, date, dateString } = this.state;
 
@@ -40,7 +55,7 @@ export default class DatePicker extends Component {
         <TouchableOpacity onPress={ this.datepicker }>
             <Container>
             <Icon
-                name={'calendar-month'}
+                name={this.state.icon}
                 size={24}
                 color={'#fff'}
                 style={{marginHorizontal:10}}
@@ -49,7 +64,7 @@ export default class DatePicker extends Component {
 
         { show && <DateTimePicker
                     value={date}
-                    mode='date'
+                    mode={this.props.mode}
                     is24Hour={true}
                     display="default"
                     minimumDate={new Date()}

@@ -29,7 +29,8 @@ export default function RegisterGame({ navigation }) {
                 onChangeText={setName}
             />
 
-            <DatePicker/>
+            <DatePicker mode={'date'}/>
+            <DatePicker mode={'time'}/>
         </ImageBackground>
     </LinearGradient>
   );
