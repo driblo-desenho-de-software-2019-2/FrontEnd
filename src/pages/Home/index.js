@@ -1,6 +1,7 @@
-import {React} from 'react';
+import React from 'react';
+import {View, Text} from 'react-native';
 
-import {Text, Image} from 'react-native';
+import soccerGroup from '../../assets/soccerGroup.png';
 
 import {Container, GroupIcon, TabBarLabel} from './styles';
 
@@ -13,12 +14,6 @@ export default function Home() {
 }
 
 Home.navigationOptions = {
-  tabBarLabel: 'Teste',
-  tabBarIcon: () => (
-    <Image
-      // eslint-disable-next-line global-require
-      source={require('../../assets/soccerGroup.png')}
-      style={{width: 50, height: 50}}
-    />
-  ),
+  tabBarLabel: () => <TabBarLabel>Pelada</TabBarLabel>,
+  tabBarIcon: () => <GroupIcon source={soccerGroup} />,
 };

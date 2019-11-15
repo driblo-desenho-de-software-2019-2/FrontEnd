@@ -22,7 +22,13 @@ const Routes = createAppContainer(
       }),
       App: createMaterialTopTabNavigator(
         {
-          Home: {
+          Home1: {
+            screen: Home,
+          },
+          Home2: {
+            screen: Home,
+          },
+          Home3: {
             screen: Home,
           },
         },
