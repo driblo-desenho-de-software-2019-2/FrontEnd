@@ -8,11 +8,14 @@ import { LoginBox, Container,LinkText } from './styles'
 export default function SignIn({navigation}) {
 
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');''
+    const [password, setPassword] = useState('');
 
     async function handleSingUp(){
         navigation.navigate('SignUp');
     }
+    async function handleListConfirmed(){
+      navigation.navigate('ListConfirmed');
+  }
 
   return (
      <LinearGradient style={styles.background} colors={['#10C971','#00FF9F']}>
@@ -35,7 +38,7 @@ export default function SignIn({navigation}) {
             text={'Senha'}
             password={true}/>
 
-          <SButtons onPress={() =>{}} text={'Login'} colors={['#00FF9F','#10C971']}/>
+          <SButtons onPress={handleListConfirmed} text={'Login'} colors={['#00FF9F','#10C971']}/>
 
 
           <View  style={{justifyContent:"space-between",flexDirection:'row'}}>
