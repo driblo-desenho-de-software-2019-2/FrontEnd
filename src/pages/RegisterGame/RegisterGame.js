@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { View, StyleSheet,ImageBackground } from 'react-native';
+import { Text, StyleSheet,ImageBackground, Picker } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import InputBox from '../../components/InputBox/index'
@@ -11,6 +11,8 @@ import DatePicker from '../../components/DatePicker/DatePicker'
 export default function RegisterGame({ navigation }) {
 
     const [name, setName ] = useState('');
+    const [place, setPlace ] = useState('');
+    const [fieldType, setfieldType ] = useState('');
 
   return (
     <LinearGradient style={styles.background} colors={['#f3f3f3','#ededed']}>
@@ -28,9 +30,22 @@ export default function RegisterGame({ navigation }) {
                 value={name}
                 onChangeText={setName}
             />
+            <InputBox
+                text={'Local da pelada'}
+                value={place}
+                onChangeText={setPlace}
+            />
+
+            <InputBox
+                text={'Tipo de campo'}
+                value={fieldType}
+                onChangeText={setfieldType}
+            />
 
             <DatePicker mode={'date'}/>
             <DatePicker mode={'time'}/>
+
+            <SButton text={'Cadastrar'} />
         </ImageBackground>
     </LinearGradient>
   );
