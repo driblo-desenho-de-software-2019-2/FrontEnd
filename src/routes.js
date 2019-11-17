@@ -6,6 +6,7 @@ import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
 import SignIn from './pages/SignIn/SignIn';
 import SignUp from './pages/SignUp/SignUp';
 import RegisterSkills from './pages/RegisterSkills/RegisterSkills';
+import ListConfirmed from  './pages/ListConfirmed/ListConfirmed'
 import Profile from './pages/Profile/Profile'
 import Home from './pages/Home';
 
@@ -19,6 +20,8 @@ const Routes = createAppContainer(
         SignIn,
         SignUp,
         RegisterSkills,
+        ListConfirmed,
+        Profile,
       }),
       App: createMaterialTopTabNavigator(
         {
