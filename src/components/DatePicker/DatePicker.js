@@ -26,6 +26,11 @@ export default class DatePicker extends Component {
       date,
       dateString: dateString,
     });
+    if(this.props.mode === 'date'){
+      this.props.getData(date.toLocaleDateString());
+    }else{
+      this.props.getTime(date.toLocaleTimeString());
+    }
   }
 
   show = mode => {

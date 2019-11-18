@@ -13,6 +13,18 @@ export default function RegisterGame({ navigation }) {
     const [name, setName ] = useState('');
     const [place, setPlace ] = useState('');
     const [fieldType, setfieldType ] = useState('');
+    const [date, setDate] = useState(0)
+    const [time, setTime] = useState(0)
+
+    const getData = (DATE) => {
+      console.tron.log('date: ',DATE);
+      setDate(DATE);
+    };
+    
+    const getTime = (TIME) => {
+      console.tron.log('TIME: ',TIME);
+      setTime(TIME);
+    };
 
   return (
     <LinearGradient style={styles.background} colors={['#f3f3f3','#ededed']}>
@@ -42,8 +54,8 @@ export default function RegisterGame({ navigation }) {
                 onChangeText={setfieldType}
             />
 
-            <DatePicker mode={'date'}/>
-            <DatePicker mode={'time'}/>
+            <DatePicker getData={(x)=>{getData(x)}} mode={'date'}/>
+            <DatePicker getTime={(y)=>{getTime(y)}} mode={'time'}/>
 
             <SButton text={'Cadastrar'} />
         </ImageBackground>
