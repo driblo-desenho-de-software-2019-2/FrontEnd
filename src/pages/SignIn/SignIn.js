@@ -4,6 +4,7 @@ import {View, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import InputBox from '../../components/InputBox/index';
 import SButtons from '../../components/sButton/Buttons';
 import {LoginBox, Container, LinkText} from './styles';
+import axios from 'axios';
 
 const styles = StyleSheet.create({
   background: {
@@ -30,9 +31,22 @@ export default function SignIn({navigation}) {
     navigation.navigate('SignUp');
   }
 
-  function navigateToHome() {
-    // eslint-disable-next-line react/prop-types
-    navigation.navigate('Home');
+  async function  navigateToHome()  {
+    const data = {
+      email,
+      password
+    }
+    await axios
+      .post('http://localhost:8002/sessions', data)
+      .then(response => {
+        if (response.status === 200) {
+          navigation.navigate('Home');
+        }
+      })
+      .catch(error => {
+        console.tron.log(error.message);
+      });
+    
   }
 
   return (
@@ -45,7 +59,11 @@ export default function SignIn({navigation}) {
 
       <LoginBox>
         <Container>
-          <InputBox value={email} onChangeText={setEmail} text="Email" />
+          <InputBox 
+            value={email} 
+            onChangeText={setEmail} 
+            text="Email" 
+          />
 
           <InputBox
             value={password}

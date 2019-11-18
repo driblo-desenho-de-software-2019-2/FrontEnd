@@ -25,7 +25,7 @@ export default function SignUp({navigation}) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState('');
   const [confirmPassword, setconfirmPassword] = useState('');
-  const [role, setRole] = useState('');
+  const [role, setRole] = useState('atacante');
 
   return (
     <LinearGradient style={styles.background} colors={['#f3f3f3', '#ededed']}>
