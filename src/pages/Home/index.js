@@ -24,7 +24,7 @@ export default class Home extends Component {
       <Container>
         {group ? (
           <View>
-            <GroupButton>
+            <GroupButton onPress={() =>{this.props.navigation.navigate('Game')}}>
               <ImageBackground
                 style={{
                   width: '100%',
