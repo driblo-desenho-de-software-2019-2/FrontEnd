@@ -22,7 +22,6 @@ export const InformationTitle = styled.Text`
 
 export const InformationsView = styled.View`
   flex-direction: row;
-
   width:100%;
   flex-wrap: wrap;
   margin-top:10;
@@ -31,7 +30,9 @@ export const InformationsView = styled.View`
 export const Informations = styled.Text`
   font-size:15;
   margin-left: 60%;
-
-
 `;
-// View style={{marginTop:20,alignItems:'flex-start', width:'80%',backgroundColor:'#fff'}}>
+
+export const CardsView = styled.View`
+  flex-direction: row;
+  margin-top:10;
+`;

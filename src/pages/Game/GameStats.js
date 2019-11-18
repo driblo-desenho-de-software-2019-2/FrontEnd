@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
-import { Container,Title,InformationTitle, InformationsView, Informations} from './styles';
+import { Container,Title,InformationTitle, InformationsView, Informations,CardsView} from './styles';
 import CardView from 'react-native-cardview'
+import Card from '../../components/Card/Card'
 
 export default function GameStats() {
 
@@ -30,6 +31,13 @@ export default function GameStats() {
           <Informations>{time}</Informations>
         </InformationsView>
       </CardView>
+
+      <Title>Craques da rodada</Title>
+        <CardsView>
+          <Card />
+          <Card />
+          <Card />
+        </CardsView>
     </Container>
   );
 }
