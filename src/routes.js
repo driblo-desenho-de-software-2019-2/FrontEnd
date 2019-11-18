@@ -10,20 +10,22 @@ import ListConfirmed from './pages/ListConfirmed/ListConfirmed';
 import Profile from './pages/Profile/Profile';
 import Home from './pages/Home';
 import RegisterGame from './pages/RegisterGame/RegisterGame';
+import GameInProgress from './pages/GameInProgress';
 
 // deve ser verificado este valor para saber ser o usuario está ou não "Logado" e depois renderizar a respectiva tela
-const signedIn = false;
+const signedIn = true;
 
 const Routes = createAppContainer(
   createSwitchNavigator(
     {
+      ListConfirmed,
+      RegisterGame,
+      GameInProgress,
+
       Sign: createSwitchNavigator({
         SignIn,
         SignUp,
         RegisterSkills,
-        ListConfirmed,
-        Profile,
-        RegisterGame,                  
       }),
       App: createMaterialTopTabNavigator(
         {
@@ -33,8 +35,8 @@ const Routes = createAppContainer(
           Home: {
             screen: Home,
           },
-          Home3: {
-            screen: Home,
+          Timer: {
+            screen: GameInProgress,
           },
         },
         {
