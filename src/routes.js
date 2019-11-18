@@ -9,6 +9,7 @@ import RegisterSkills from './pages/RegisterSkills/RegisterSkills';
 import ListConfirmed from './pages/ListConfirmed/ListConfirmed';
 import Profile from './pages/Profile/Profile';
 import Home from './pages/Home';
+import RegisterGame from './pages/RegisterGame/RegisterGame';
 
 // deve ser verificado este valor para saber ser o usuario está ou não "Logado" e depois renderizar a respectiva tela
 const signedIn = false;
