@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Text, Dimensions, View} from 'react-native';
+import {Dimensions, View} from 'react-native';
 import {BarChart} from 'react-native-chart-kit';
 import Card from '../../components/Card/Card';
 import accountProfile from '../../assets/accountProfile.png';
@@ -23,7 +23,7 @@ export default function Profile() {
   const [token,setToken] = useState(undefined);
 
   useEffect(()=>{
-    axios.get('http://localhost:8002/users/1', {
+    axios.get('http://localhost:8002/users', {
       headers: {
         authorization: token
       }
