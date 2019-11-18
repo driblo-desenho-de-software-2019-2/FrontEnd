@@ -1,8 +1,11 @@
-import React, {useState} from 'react';
+/* eslint-disable react/prop-types */
+import React, {useState, useEffect} from 'react';
 import {ImageBackground, StyleSheet} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Slider from '@react-native-community/slider';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import axios from 'axios';
+
 import {
   Points,
   PointsText,
@@ -14,6 +17,7 @@ import {
   SliderView,
 } from './styles';
 import SButtons from '../../components/sButton/Buttons';
+import { Role } from '../SignUp/styles';
 
 const styles = StyleSheet.create({
   background: {
@@ -38,6 +42,7 @@ const styles = StyleSheet.create({
 });
 
 // eslint-disable-next-line react/prop-types
+
 export default function RegisterSkills({navigation}) {
   const [pointsLeft] = useState(100);
   const [velocityPoints, setVelocityPoints] = useState(0);
@@ -45,11 +50,41 @@ export default function RegisterSkills({navigation}) {
   const [defensePoints, setDefensePoints] = useState(0);
   const [tricksPoints, setTricksPoints] = useState(0);
   const [passPoints, setPassPoints] = useState(0);
+  const [name, setName] = useState(navigation.getParam('name'));
+  const [email, setEmail] = useState(navigation.getParam('email'));
+  const [password, setPassword] = useState(navigation.getParam('password'));
+  const [role, setRole] = useState(navigation.getParam('role'));
 
-  function navigateToHome() {
-    // eslint-disable-next-line react/prop-types
-    navigation.navigate('Home');
-  }
+  useEffect(() => {
+    console.tron.log('name', name);
+    console.tron.log('email', email);
+    console.tron.log('senha', password);
+    console.tron.log('posição', role);
+  }, []);
+
+  const registerUser = async () => {
+    const data = {
+      name,
+      email,
+      password,
+      main_role: role,
+      kick: kickPoints,
+      speed: velocityPoints,
+      pass: passPoints,
+      dribble: tricksPoints,
+      defense: defensePoints,
+    };
+    await axios
+      .post('http://localhost:8002/users', data)
+      .then(response => {
+        if (response.status === 200) {
+          navigation.navigate('SignIn');
+        }
+      })
+      .catch(error => {
+        console.tron.log(error.message);
+      });
+  };
 
   return (
     <LinearGradient style={styles.background} colors={['#f3f3f3', '#ededed']}>
@@ -156,7 +191,7 @@ export default function RegisterSkills({navigation}) {
 
         <Footer>
           <SButtons
-            onPress={navigateToHome}
+            onPress={registerUser}
             text="Cadastrar"
             colors={['#00FF9F', '#10C971']}
           />

@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
-import {StyleSheet, ImageBackground, Picker} from 'react-native';
+import {StyleSheet, ImageBackground, Picker, ScrollView} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {Container} from './styles';
 import InputBox from '../../components/InputBox/index';
 import SButtons from '../../components/sButton/Buttons';
+
+import {Container, Role} from './styles';
 
 const styles = StyleSheet.create({
   background: {
@@ -24,6 +25,7 @@ export default function SignUp({navigation}) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState('');
   const [confirmPassword, setconfirmPassword] = useState('');
+  const [role, setRole] = useState('');
 
   return (
     <LinearGradient style={styles.background} colors={['#f3f3f3', '#ededed']}>
@@ -42,37 +44,47 @@ export default function SignUp({navigation}) {
             navigation.navigate('SignIn');
           }}
         />
+        <ScrollView>
+          <Container>
+            <InputBox text="Nome" value={name} onChangeText={setName} />
+            <InputBox text="Email" value={email} onChangeText={setEmail} />
 
-        <Container>
-          <InputBox text="Nome" value={name} onChangeText={setName} />
-          <InputBox text="Email" value={email} onChangeText={setEmail} />
+            <InputBox
+              text="Senha"
+              value={password}
+              onChangeText={setPassword}
+              password
+            />
+            <InputBox
+              text="Confirme a senha"
+              value={confirmPassword}
+              onChangeText={setconfirmPassword}
+              password
+            />
+            <Role>Posição:</Role>
+            <Picker
+              style={{height: 50, width: 180}}
+              onValueChange={itemValue => setRole(itemValue)}
+              selectedValue={role}>
+              <Picker.Item label="Atacante" value="atacante" />
+              <Picker.Item label="Meio-campo" value="meio-campo" />
+              <Picker.Item label="Zagueiro" value="zagueiro" />
+            </Picker>
 
-          <InputBox
-            text="Senha"
-            value={password}
-            onChangeText={setPassword}
-            password
-          />
-          <InputBox
-            text="Confirme a senha"
-            value={confirmPassword}
-            onChangeText={setconfirmPassword}
-            password
-          />
-
-          <Picker style={{height: 50, width: 100}}>
-            <Picker.Item label="Java" value="java" />
-            <Picker.Item label="JavaScript" value="js" />
-          </Picker>
-
-          <SButtons
-            onPress={() => {
-              // eslint-disable-next-line react/prop-types
-              navigation.navigate('RegisterSkills');
-            }}
-            text="Próximo"
-          />
-        </Container>
+            <SButtons
+              onPress={() => {
+                // eslint-disable-next-line react/prop-types
+                navigation.navigate('RegisterSkills', {
+                  name,
+                  email,
+                  password,
+                  role,
+                });
+              }}
+              text="Próximo"
+            />
+          </Container>
+        </ScrollView>
       </ImageBackground>
     </LinearGradient>
   );

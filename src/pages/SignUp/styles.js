@@ -6,3 +6,12 @@ export const Container = styled.View`
   justify-content: center;
   align-self: stretch;
 `;
+
+export const Role = styled.Text`
+  font-family: Roboto;
+  font-weight: 700;
+  font-size: 20px;
+  color: #9499a1;
+  text-align: left;
+  margin-top: 20px;
+`;
