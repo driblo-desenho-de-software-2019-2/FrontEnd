@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
-import {View, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {View, StyleSheet, Image, TouchableOpacity, Alert} from 'react-native';
 import InputBox from '../../components/InputBox/index';
 import SButtons from '../../components/sButton/Buttons';
 import {LoginBox, Container, LinkText} from './styles';
+import axios from 'axios';
+import { continueStatement } from '@babel/types';
 
 const styles = StyleSheet.create({
   background: {
@@ -30,9 +32,26 @@ export default function SignIn({navigation}) {
     navigation.navigate('SignUp');
   }
 
-  function navigateToHome() {
-    // eslint-disable-next-line react/prop-types
-    navigation.navigate('Home');
+  async function  navigateToHome()  {
+    const data = {
+      email,
+      password
+    }
+    const url = 'http://localhost:8002/sessions';
+
+    await axios
+      .post(url, data)
+      .then(response => {
+        if (response.status === 200) {
+            console.tron.log('RESPONSE: ',response.data )
+            navigation.navigate('Home', response.data.token);
+        }
+      })
+      .catch(error => {
+        console.tron.log(error.message);
+        Alert.alert('Driblô','E-mail ou Senha Incorretos!');
+      });
+    
   }
 
   return (
@@ -45,7 +64,11 @@ export default function SignIn({navigation}) {
 
       <LoginBox>
         <Container>
-          <InputBox value={email} onChangeText={setEmail} text="Email" />
+          <InputBox 
+            value={email} 
+            onChangeText={setEmail} 
+            text="Email" 
+          />
 
           <InputBox
             value={password}
