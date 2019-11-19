@@ -1,7 +1,15 @@
 import React, {useState} from 'react';
-import { Container,Title,InformationTitle, InformationsView, Informations,CardsView} from './styles';
+import { Container,Title,
+          InformationTitle,
+          InformationsView,
+          Informations,
+          CardsView,
+          GameCard,
+          ScoreText,
+        } from './styles';
 import CardView from 'react-native-cardview'
 import Card from '../../components/Card/Card'
+import {View, Text, ImageBackground} from 'react-native'
 
 export default function GameStats() {
 
@@ -11,29 +19,58 @@ export default function GameStats() {
   const [topGoal, setTopGoal] = useState({name:'', goalsNumber:'',photo:''})
   const [topScore, setTopScore] = useState({name:'', scoreNumber:'',photo:''})
   const [topAssistants, setTopAssistants] = useState({name:'', assistantsNumber:'',photo:''})
+  const [goignMatch, setGoingMatch] = useState(false)
 
   return (
     <Container>
+      { goignMatch ? (
+      <>
       <Title>Informações da pelada</Title>
-      <CardView
-        style={{marginTop:10}}
-        cardElevation={2}
-        cardMaxElevation={2}
-        cornerRadius={5}>
+        <CardView
+          style={{marginTop:10}}
+          cardElevation={2}
+          cardMaxElevation={2}
+          cornerRadius={5}>
 
-        <InformationsView>
-          <InformationTitle>Local: </InformationTitle>
-          <Informations>{place}</Informations>
-        </InformationsView>
-        <InformationsView>
-          <InformationTitle>Data: </InformationTitle>
-          <Informations>{date}</Informations>
-        </InformationsView>
-        <InformationsView>
-          <InformationTitle>Hora: </InformationTitle>
-          <Informations>{time}</Informations>
-        </InformationsView>
-      </CardView>
+          <InformationsView>
+            <InformationTitle>Local: </InformationTitle>
+            <Informations>{place}</Informations>
+          </InformationsView>
+          <InformationsView>
+            <InformationTitle>Data: </InformationTitle>
+            <Informations>{date}</Informations>
+          </InformationsView>
+          <InformationsView>
+            <InformationTitle>Hora: </InformationTitle>
+            <Informations>{time}</Informations>
+          </InformationsView>
+        </CardView>
+
+        </>) :
+
+        (<View>
+          <Title>Partida em andamento</Title>
+          <CardView
+            style={{marginTop:10}}
+            cardElevation={2}
+            cardMaxElevation={2}
+            cornerRadius={5}>
+              <GameCard>
+                <ImageBackground
+                 source={require('../../assets/Campo.png')}
+                 style={{width:'100%',height:'100%'}}>
+                  <View style={{flexDirection:'row',justifyContent:'center',alignContent:'center'}}>
+                    <ScoreText>1</ScoreText>
+                    <ScoreText>X</ScoreText>
+                    <ScoreText>1</ScoreText>
+                  </View>
+
+                </ImageBackground>
+
+              </GameCard>
+            </CardView>
+
+        </View>) }
 
       <Title>Craques da rodada</Title>
         <CardsView>

@@ -28,7 +28,7 @@ const Routes = createAppContainer(
       App: createMaterialTopTabNavigator(
         {
           Profile: {
-            screen: Profile,
+            screen: Game,
           },
           Home: {
             screen: Home,

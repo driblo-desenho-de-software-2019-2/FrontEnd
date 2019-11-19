@@ -36,3 +36,16 @@ export const CardsView = styled.View`
   flex-direction: row;
   margin-top:10;
 `;
+
+export const GameCard = styled.View`
+  height:175;
+  width: 350;
+  align-items:center;
+  justify-content: center;
+`;
+
+export const ScoreText = styled.Text`
+  font-size:45;
+  color: #fff;
+  font-weight: bold;
+`;
