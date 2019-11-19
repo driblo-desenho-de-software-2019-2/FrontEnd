@@ -6,7 +6,13 @@ import CountDown from 'react-native-countdown-component';
 
 import SmallButtons from '../../components/SmallButton/SmallButtons';
 
-import {Container, TimerCircle, TimerView} from './styles';
+import {
+  Container,
+  TimerCircle,
+  TimerView,
+  Title,
+  GameInProgressText,
+} from './styles';
 
 export default class GameInProgress extends Component {
   state = {
@@ -16,7 +22,7 @@ export default class GameInProgress extends Component {
   renderTimer = () => {
     return (
       <CountDown
-        size={25}
+        size={23}
         until={600}
         onFinish={() => Alert.alert('Finished')}
         digitStyle={{
@@ -31,6 +37,7 @@ export default class GameInProgress extends Component {
         timeToShow={['M', 'S']}
         timeLabels={{m: null, s: null}}
         showSeparator
+        // onPress={() => running=false}
         running
       />
     );
@@ -41,6 +48,8 @@ export default class GameInProgress extends Component {
 
     return (
       <Container>
+        <Title>FutDriblô</Title>
+        <GameInProgressText>Partidada em amdamento</GameInProgressText>
         <TimerView>
           <TimerCircle>
             {setTimer ? null : (

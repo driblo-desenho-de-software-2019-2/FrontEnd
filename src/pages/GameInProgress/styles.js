@@ -14,13 +14,35 @@ export const StartTimerText = styled.Text`
   margin-top: 5px;
 `;
 
+export const GameInProgressText = styled.Text`
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 13px;
+  text-align: center;
+  color: #07d7a5;
+  margin-vertical: 5px;
+`;
+
+export const Title = styled.Text`
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 21px;
+  line-height: 26px;
+  color: #000000;
+  text-align: center;
+`;
+
 export const TimerCircle = styled.ImageBackground`
   border: 5px solid #07d7a5;
   border-radius: 100px;
   border-width: 3px;
-  height: 150px;
-  width: 150px;
+  height: 140px;
+  width: 140px;
   margin-bottom: 15px;
+  margin-top: 15px;
   margin-left: 10px;
   justify-content: center;
   align-items: center;
