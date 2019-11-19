@@ -1,11 +1,10 @@
 import React from 'react';
-import { View, Text } from 'react-native';
 
-export default function FrontEnd() {
-  return (
-    <View>
-      <Text> Driblo </Text>
-    </View>
-    
-  );
+import './src/config/ReacttionConfig';
+
+import Routes from './src/routes';
+
+export default function App() {
+  return <Routes />;
+
 }
