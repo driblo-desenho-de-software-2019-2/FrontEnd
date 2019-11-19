@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import InputBox from '../../components/InputBox/index'
 import SButton from '../../components/sButton/Buttons'
 import DatePicker from '../../components/DatePicker/DatePicker'
+import axios from 'axios';
 
 // import { Container } from './styles';
 
@@ -25,6 +26,30 @@ export default function RegisterGame({ navigation }) {
       console.tron.log('TIME: ',TIME);
       setTime(TIME);
     };
+
+    async function  handleRegister()  {
+      const data = {
+        name,
+        location: place,
+        fieldType,
+        //date,
+        //dateHourPelada: time,
+      }
+      const url = 'http://localhost:8001/pelada';
+  
+      await axios
+        .post(url, data)
+        .then(response => {
+          if (response.status === 200) {
+              console.tron.log('RESPONSE: ',response.data )
+              //navigation.navigate('Home');
+          }
+        })
+        .catch(error => {
+          console.tron.log(error.message);
+        });
+  
+    }
 
   return (
     <LinearGradient style={styles.background} colors={['#f3f3f3','#ededed']}>
@@ -57,7 +82,7 @@ export default function RegisterGame({ navigation }) {
             <DatePicker getData={(x)=>{getData(x)}} mode={'date'}/>
             <DatePicker getTime={(y)=>{getTime(y)}} mode={'time'}/>
 
-            <SButton text={'Cadastrar'} />
+            <SButton onPress={handleRegister} text={'Cadastrar'} />
         </ImageBackground>
     </LinearGradient>
   );

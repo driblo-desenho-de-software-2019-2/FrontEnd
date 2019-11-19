@@ -5,6 +5,8 @@ import {View, StyleSheet, Image, TouchableOpacity, Alert} from 'react-native';
 import InputBox from '../../components/InputBox/index';
 import SButtons from '../../components/sButton/Buttons';
 import {LoginBox, Container, LinkText} from './styles';
+import {continueStatement} from '@babel/types';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const styles = StyleSheet.create({
   background: {
@@ -42,8 +44,9 @@ export default function SignIn({navigation}) {
       .post(url, data)
       .then(response => {
         if (response.status === 200) {
+          AsyncStorage.setItem('@token', response.data.token);
           console.tron.log('RESPONSE: ', response.data);
-          navigation.navigate('Home', response.data.token);
+          navigation.navigate('Home');
         }
       })
       .catch(error => {
