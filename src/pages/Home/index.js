@@ -17,6 +17,12 @@ import {
 } from './styles';
 
 export default class Home extends Component {
+  navigateToGameInProgress = () => {
+    const {navigation} = this.props;
+    // eslint-disable-next-line react/prop-types
+    navigation.navigate('GameInProgress');
+  };
+
   render() {
     const group = true;
 
@@ -24,7 +30,10 @@ export default class Home extends Component {
       <Container>
         {group ? (
           <View>
-            <GroupButton>
+            <GroupButton
+              onPress={() => {
+                this.navigateToGameInProgress();
+              }}>
               <ImageBackground
                 style={{
                   width: '100%',
