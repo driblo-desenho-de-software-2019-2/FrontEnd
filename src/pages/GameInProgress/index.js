@@ -1,10 +1,12 @@
 /* eslint-disable react/state-in-constructor */
 /* eslint-disable react/prefer-stateless-function */
 import React, {Component} from 'react';
-import {Alert, TouchableOpacity, Text} from 'react-native';
+import {Alert} from 'react-native';
 import CountDown from 'react-native-countdown-component';
 
-import {Container} from './styles';
+import SmallButtons from '../../components/SmallButton/SmallButtons';
+
+import {Container, TimerCircle, TimerView} from './styles';
 
 export default class GameInProgress extends Component {
   state = {
@@ -14,15 +16,18 @@ export default class GameInProgress extends Component {
   renderTimer = () => {
     return (
       <CountDown
-        size={15}
+        size={25}
         until={600}
         onFinish={() => Alert.alert('Finished')}
         digitStyle={{
           backgroundColor: '#FFF',
         }}
-        digitTxtStyle={{color: '#1CC625'}}
-        timeLabelStyle={{color: 'red', fontWeight: 'bold'}}
-        separatorStyle={{color: '#1CC625'}}
+        digitTxtStyle={{
+          color: '#07D7A5',
+          fontFamily: 'Montserrat Alternates',
+          fontWeight: 'bold',
+        }}
+        separatorStyle={{color: '#07D7A5'}}
         timeToShow={['M', 'S']}
         timeLabels={{m: null, s: null}}
         showSeparator
@@ -33,15 +38,23 @@ export default class GameInProgress extends Component {
 
   render() {
     const {setTimer} = this.state;
+
     return (
       <Container>
-        <TouchableOpacity
-          onPress={() => {
-            this.setState({setTimer: true});
-          }}>
-          <Text>TESTE AQUI</Text>
-        </TouchableOpacity>
-        {setTimer ? this.renderTimer() : null}
+        <TimerView>
+          <TimerCircle>
+            {setTimer ? null : (
+              <SmallButtons
+                onPress={() => {
+                  this.setState({setTimer: true});
+                }}
+                iconName="timer"
+                text="Cronometro"
+              />
+            )}
+            {setTimer ? this.renderTimer() : null}
+          </TimerCircle>
+        </TimerView>
       </Container>
     );
   }
