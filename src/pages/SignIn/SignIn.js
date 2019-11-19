@@ -2,11 +2,11 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import LinearGradient from 'react-native-linear-gradient';
 import {View, StyleSheet, Image, TouchableOpacity, Alert} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import InputBox from '../../components/InputBox/index';
 import SButtons from '../../components/sButton/Buttons';
 import {LoginBox, Container, LinkText} from './styles';
-import {continueStatement} from '@babel/types';
-import AsyncStorage from '@react-native-community/async-storage';
+// eslint-disable-next-line import/no-extraneous-dependencies
 
 const styles = StyleSheet.create({
   background: {
@@ -46,6 +46,7 @@ export default function SignIn({navigation}) {
         if (response.status === 200) {
           AsyncStorage.setItem('@token', response.data.token);
           console.tron.log('RESPONSE: ', response.data);
+          // eslint-disable-next-line react/prop-types
           navigation.navigate('Home');
         }
       })
