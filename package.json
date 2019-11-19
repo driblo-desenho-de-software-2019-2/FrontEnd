@@ -21,6 +21,8 @@
     "react-native": "0.61.2",
     "react-native-cardview": "^2.0.5",
     "react-native-chart-kit": "^3.11.0",
+    "react-native-circle-timer": "^1.0.1",
+    "react-native-countdown-component": "^2.6.0",
     "react-native-elements": "^1.2.7",
     "react-native-fab": "^1.0.9",
     "react-native-gesture-handler": "^1.4.1",
