@@ -1,8 +1,10 @@
-import React, {useState} from 'react';
-import {Text, Dimensions, View} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {Dimensions, View} from 'react-native';
 import {BarChart} from 'react-native-chart-kit';
 import Card from '../../components/Card/Card';
 import accountProfile from '../../assets/accountProfile.png';
+import AsyncStorage from '@react-native-community/async-storage';
+import axios from 'axios';
 
 import {
   Container,
@@ -13,11 +15,50 @@ import {
 } from './styles';
 
 export default function Profile() {
-  const [velocityPoints, setVelocityPoints] = useState(20);
-  const [kickPoints, setKickPoints] = useState(50);
-  const [defensePoints, setDefensePoints] = useState(10);
-  const [tricksPoints, setTricksPoints] = useState(5);
-  const [passPoints, setPassPoints] = useState(80);
+  const [velocityPoints, setVelocityPoints] = useState(0);
+  const [kickPoints, setKickPoints] = useState(0);
+  const [defensePoints, setDefensePoints] = useState(0);
+  const [tricksPoints, setTricksPoints] = useState(0);
+  const [passPoints, setPassPoints] = useState(0);
+  const [token,setToken] = useState(undefined);
+
+  useEffect(()=>{
+    axios.get('http://localhost:8002/users', {
+      headers: {
+        authorization: token
+      }
+    })
+    .then(function (response) {
+      console.tron.log('LOGADO ',response.data);
+      setVelocityPoints(response.data.speed);
+      setKickPoints(response.data.kick);
+      setDefensePoints(response.data.defense);
+      setTricksPoints(response.data.dribble);
+      setPassPoints(response.data.pass);
+    })
+    .catch(function (error) {
+      console.tron.log(error);
+    })
+    .finally(function () {
+      // always executed
+    }); 
+  },[token])
+
+  useEffect(()=>{
+
+    const getData = async () => {
+      try {
+        const value = await AsyncStorage.getItem('@token')
+        if(value !== null) {
+          setToken(value);
+          console.tron.log('token',value);
+        }
+      } catch(e) {
+        // error reading value
+      }
+    }
+    getData();
+  },[])
 
   let deviceWidth = Dimensions.get('window').width;
 
@@ -30,7 +71,7 @@ export default function Profile() {
   };
 
   const data = {
-    labels: ['Chute', 'Passe', 'Drible', 'Velocidade', 'Defesa'],
+    labels: ['Chute', 'Passe', 'Drible', 'Velocidade ', 'Defesa'],
     datasets: [
       {
         data: [
@@ -48,9 +89,9 @@ export default function Profile() {
     <Container>
       <BarChart
         data={data}
-        width={deviceWidth - 50}
-        height={200}
-        yAxisSuffix={' Pts'}
+        width={deviceWidth - 20}
+        height={220}
+        yAxisSuffix={' %'}
         chartConfig={chartConfig}
         verticalLabelRotation={0}
       />
