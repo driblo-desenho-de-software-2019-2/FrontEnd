@@ -6,6 +6,7 @@ import { Container,Title,
           CardsView,
           GameCard,
           ScoreText,
+          TeamsText,
         } from './styles';
 import CardView from 'react-native-cardview'
 import Card from '../../components/Card/Card'
@@ -59,10 +60,22 @@ export default function GameStats() {
                 <ImageBackground
                  source={require('../../assets/Campo.png')}
                  style={{width:'100%',height:'100%'}}>
-                  <View style={{flexDirection:'row',justifyContent:'center',alignContent:'center'}}>
-                    <ScoreText>1</ScoreText>
+                  <View style={{flexDirection:'row',justifyContent:'center',alignContent:'center', marginTop:50}}>
+                    <View style={{flexDirection:'row'}}>
+                      <View style={{flexDirection:'column',justifyContent:'center', alignItems:'center',marginHorizontal:30 }} >
+                        <TeamsText>Time</TeamsText>
+                        <TeamsText>A</TeamsText>
+                      </View>
+                      <ScoreText>10</ScoreText>
+                    </View>
                     <ScoreText>X</ScoreText>
-                    <ScoreText>1</ScoreText>
+                    <View style={{flexDirection:'row-reverse'}}>
+                      <View style={{flexDirection:'column',justifyContent:'center', alignItems:'center',marginHorizontal:30}} >
+                        <TeamsText>Time</TeamsText>
+                        <TeamsText>A</TeamsText>
+                      </View>
+                      <ScoreText>1</ScoreText>
+                    </View>
                   </View>
 
                 </ImageBackground>

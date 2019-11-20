@@ -45,7 +45,14 @@ export const GameCard = styled.View`
 `;
 
 export const ScoreText = styled.Text`
-  font-size:45;
+  font-size:50;
+  color: #fff;
+  font-weight: bold;
+
+`;
+
+export const TeamsText = styled.Text`
+  font-size:25;
   color: #fff;
   font-weight: bold;
 `;
