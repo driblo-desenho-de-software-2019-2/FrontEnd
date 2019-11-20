@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { View,FlatList } from 'react-native';
-import { ListItem, Button, Overlay,Text } from "react-native-elements";
+import { ListItem, Button, Overlay,} from "react-native-elements";
 import SmallButtons from '../../components/SmallButton/SmallButtons';
 import FAB from 'react-native-fab';
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import { Title, DateTime, AnswerView,AnswerText} from './styles'
+import { Title,
+          DateTime,
+          AnswerText,
+          ButtonView } from './styles'
+
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function ListConfirmed() {
@@ -88,14 +92,14 @@ if(!isLoading){
             </View>
       </Overlay>
 
-      <View style={{backgroundColor:'#f5f5f5',flexDirection:'row',justifyContent:'space-between', height:'12%', alignItems:'center'}}>
-        <View style={{marginLeft:20, marginRight:20,width:'38%',marginBottom:30}}>
+      <ButtonView>
+        <View style={{width:'38%'}}>
           <SmallButtons onPress={()=>{setRandom(true)}} iconName={'shuffle'} text='Sortear times'/>
         </View>
-        <View style={{width:'38%',marginBottom:30,marginLeft:25, marginRight:25}}>
+        <View style={{width:'38%'}}>
           <SmallButtons iconName="person-add" text='Convidar'/>
         </View>
-      </View>
+      </ButtonView>
       <FlatList
         data={DATA}
         renderItem={({ item }) =>
@@ -103,6 +107,7 @@ if(!isLoading){
             leftAvatar={{ source: { uri: item.picture } }}
             title={item.name}
             subtitle = {item.isActive ? 'Confirmado' : 'Não Confirmado' }
+            containerStyle={{backgroundColor:"#f5f5f5"}}
             bottomDivider
           />}
       />

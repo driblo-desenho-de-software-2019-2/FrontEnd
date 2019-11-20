@@ -43,7 +43,7 @@ const Routes = createAppContainer(
               height: 80,
             },
             style: {
-              backgroundColor: 'white',
+              backgroundColor: '#f5f5f5',
               elevation: 0,
             },
             indicatorStyle: {
@@ -54,8 +54,9 @@ const Routes = createAppContainer(
               borderWidth: 3,
               height: 60,
               width: 60,
-              marginBottom: 15,
-              marginLeft: 43,
+              marginBottom: 5,
+              marginTop:5,
+              marginLeft:43,
             },
             showIcon: true,
           },

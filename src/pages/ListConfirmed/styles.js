@@ -1,19 +1,5 @@
 import styled from 'styled-components/native';
 
-export const ListBox = styled.View`
-    background-color: rgb(255,255,255);
-    width: 100%;
-    height: 80%;
-    border-radius: 10;
-    marginTop: 80
-`;
-
-export const MenuBox = styled.View`
-    height: 20%;
-    background-color: rgb(255,255,0);
-    padding: 0px 15px;
-`;
-
 export const Title = styled.Text`
     font-size:25;
     color:rgb(255,255,255)
@@ -36,4 +22,11 @@ export const AnswerText = styled.Text`
     color:rgb(255,255,255)
     font-size: 25;
     margin-horizontal:10;
+`;
+export const ButtonView = styled.View`
+    backgroundColor:#f5f5f5;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 12%;
+    align-items: center;
 `;

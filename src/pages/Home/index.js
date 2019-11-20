@@ -3,6 +3,7 @@
 import React, {Component} from 'react';
 import {View, ImageBackground} from 'react-native';
 import FAB from 'react-native-fab';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import soccerGroup from '../../assets/soccerGroup.png';
 
@@ -67,5 +68,5 @@ export default class Home extends Component {
 
 Home.navigationOptions = {
   tabBarLabel: () => <TabBarLabel>Pelada</TabBarLabel>,
-  tabBarIcon: () => <GroupIcon source={soccerGroup} />,
+  tabBarIcon: () => <Icon name="account" size={20} />,
 };

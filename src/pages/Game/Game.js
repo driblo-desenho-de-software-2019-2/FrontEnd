@@ -3,6 +3,7 @@ import { Container } from './styles';
 import { TabView,TabBar, SceneMap } from 'react-native-tab-view';
 import { View, StyleSheet, Dimensions } from 'react-native';
 import GameStats from './GameStats'
+import ListConfirmed from '../ListConfirmed/ListConfirmed'
 
 
 const FirstRoute = () => (
@@ -10,7 +11,7 @@ const FirstRoute = () => (
 );
 
 const SecondRoute = () => (
-  <View style={[styles.scene, { backgroundColor: '#f5f5f5' }]} />
+  <ListConfirmed />
 );
 const ThirdRoute = () => (
   <View style={[styles.scene, { backgroundColor: '#f5f5f5' }]} />
@@ -35,7 +36,7 @@ export default class Game extends React.Component {
             {...props}
             indicatorStyle={{ backgroundColor: '#5BEBA6' }}
             labelStyle={{color:'#000'}}
-            style={{ backgroundColor: '##f5f5f5', height:40, }}
+            style={{backgroundColor:'#f5f5f5', height:40, }}
           />
         }
         renderScene={SceneMap({
