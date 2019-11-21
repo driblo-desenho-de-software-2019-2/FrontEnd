@@ -2,7 +2,7 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, {Component} from 'react';
 import {Alert, View, ScrollView} from 'react-native';
-import {Image, ListItem} from 'react-native-elements';
+import {ListItem} from 'react-native-elements';
 
 import axios from 'axios';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -22,8 +22,6 @@ import {
   PlayersListView,
   TeamName,
   PlayersList,
-  FlatListItemSeparator,
-  Name,
 } from './styles';
 
 export default class GameInProgress extends Component {

@@ -6,6 +6,7 @@ export const Container = styled.SafeAreaView`
   padding: 20px;
 `;
 
+// Views
 export const MainView = styled.View`
   flex-direction: row;
 `;
@@ -13,7 +14,8 @@ export const MainView = styled.View`
 export const ScoreboardView = styled.View`
   flex-direction: row;
   flex-wrap: wrap;
-  padding-top: 30px;
+  padding-top: 20px;
+  margin-left: 25px;
 `;
 
 export const PlayersListView = styled.View`
@@ -21,12 +23,7 @@ export const PlayersListView = styled.View`
   flex-direction: row;
 `;
 
-export const PlayersList = styled.FlatList.attrs({
-  contentContainerStyle: {
-    paddingTop: 10,
-  },
-})``;
-
+// Text
 export const TeamName = styled.Text`
   font-family: Montserrat;
   font-style: normal;
@@ -85,6 +82,22 @@ export const Points = styled.Text`
   margin-bottom: 30px;
 `;
 
+// Buttons
+export const StartTimerButton = styled.TouchableOpacity``;
+
+export const AddPointButton = styled.TouchableOpacity`
+  height: 30px;
+  width: 30px;
+  background-color: #10c971;
+  border-radius: 50px;
+  justify-content: center;
+  align-items: center;
+  elevation: 10px;
+  margin-top: 30px;
+  margin-horizontal: 5px;
+`;
+
+// Image Background
 export const TimerCircle = styled.ImageBackground`
   border: 5px solid #07d7a5;
   border-radius: 100px;
@@ -97,16 +110,9 @@ export const TimerCircle = styled.ImageBackground`
   align-items: center;
 `;
 
-export const StartTimerButton = styled.TouchableOpacity``;
-
-export const AddPointButton = styled.TouchableOpacity`
-  height: 35px;
-  width: 35px;
-  background-color: #10c971;
-  border-radius: 50px;
-  justify-content: center;
-  align-items: center;
-  elevation: 10px;
-  margin-top: 30px;
-  margin-horizontal: 5px;
-`;
+// Flatlist
+export const PlayersList = styled.FlatList.attrs({
+  contentContainerStyle: {
+    paddingTop: 10,
+  },
+})``;
