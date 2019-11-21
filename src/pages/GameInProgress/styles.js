@@ -2,20 +2,37 @@ import styled from 'styled-components/native';
 
 export const Container = styled.SafeAreaView`
   flex: 1;
-  background: #fefefe;
+  background: #f5f5f5;
   padding: 20px;
 `;
 
 export const MainView = styled.View`
   flex-direction: row;
-  border: 5px solid #07d7a5;
 `;
 
 export const ScoreboardView = styled.View`
   flex-direction: row;
   flex-wrap: wrap;
-  border: 5px solid #07d7a5;
   padding-top: 30px;
+`;
+
+export const PlayersListView = styled.View`
+  margin-top: 10px;
+  flex-direction: row;
+`;
+
+export const PlayersList = styled.FlatList.attrs({
+  contentContainerStyle: {
+    paddingTop: 10,
+  },
+})``;
+
+export const TeamName = styled.Text`
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 25px;
+  line-height: 30px;
 `;
 
 export const StartTimerText = styled.Text`
@@ -45,6 +62,16 @@ export const Title = styled.Text`
   line-height: 26px;
   color: #000;
   text-align: center;
+`;
+
+export const Name = styled.Text`
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: 0.2px;
 `;
 
 export const Points = styled.Text`

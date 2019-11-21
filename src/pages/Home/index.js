@@ -18,6 +18,7 @@ import {
 
 export default class Home extends Component {
   navigateToGameInProgress = () => {
+    // eslint-disable-next-line react/prop-types
     const {navigation} = this.props;
     // eslint-disable-next-line react/prop-types
     navigation.navigate('GameInProgress');
