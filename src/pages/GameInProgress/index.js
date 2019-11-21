@@ -1,7 +1,8 @@
 /* eslint-disable react/state-in-constructor */
 /* eslint-disable react/prefer-stateless-function */
 import React, {Component} from 'react';
-import {Alert} from 'react-native';
+import {Alert, View} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CountDown from 'react-native-countdown-component';
 
 import SmallButtons from '../../components/SmallButton/SmallButtons';
@@ -9,14 +10,19 @@ import SmallButtons from '../../components/SmallButton/SmallButtons';
 import {
   Container,
   TimerCircle,
-  TimerView,
+  MainView,
   Title,
   GameInProgressText,
+  Points,
+  AddPointButton,
+  ScoreboardView,
 } from './styles';
 
 export default class GameInProgress extends Component {
   state = {
     setTimer: false,
+    leftPoints: 0,
+    rightPoints: 0,
   };
 
   renderTimer = () => {
@@ -43,14 +49,23 @@ export default class GameInProgress extends Component {
     );
   };
 
+  addPoint = pointPosition => {
+    const {leftPoints, rightPoints} = this.state;
+    if (pointPosition === 'left') {
+      this.setState({leftPoints: leftPoints + 1});
+    } else {
+      this.setState({rightPoints: rightPoints + 1});
+    }
+  };
+
   render() {
-    const {setTimer} = this.state;
+    const {setTimer, leftPoints, rightPoints} = this.state;
 
     return (
       <Container>
         <Title>FutDriblô</Title>
-        <GameInProgressText>Partidada em amdamento</GameInProgressText>
-        <TimerView>
+        <GameInProgressText>Partidada em andamento</GameInProgressText>
+        <MainView>
           <TimerCircle>
             {setTimer ? null : (
               <SmallButtons
@@ -63,7 +78,26 @@ export default class GameInProgress extends Component {
             )}
             {setTimer ? this.renderTimer() : null}
           </TimerCircle>
-        </TimerView>
+          <ScoreboardView>
+            <AddPointButton onPress={() => this.addPoint('left')}>
+              <Icon name="plus" size={20} color="#fff" />
+            </AddPointButton>
+
+            <Points>{leftPoints}</Points>
+            <Points>X</Points>
+            <Points>{rightPoints}</Points>
+
+            <AddPointButton onPress={() => this.addPoint('right')}>
+              <Icon name="plus" size={20} color="#fff" />
+            </AddPointButton>
+            <SmallButtons
+              style={{marginHorizontal: 5}}
+              onPress={() => {}}
+              iconName="close"
+              text="Finalizar Partida"
+            />
+          </ScoreboardView>
+        </MainView>
       </Container>
     );
   }
