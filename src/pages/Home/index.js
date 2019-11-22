@@ -1,7 +1,7 @@
 /* eslint-disable global-require */
 /* eslint-disable react/prefer-stateless-function */
 import React, {Component, useState, useEffect} from 'react';
-import {View, ImageBackground} from 'react-native';
+import {View, ImageBackground, Text} from 'react-native';
 import FAB from 'react-native-fab';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import axios from 'axios'
@@ -23,6 +23,8 @@ export default function Home({navigation}) {
   const baseUrl = 'http://localhost:8001'
   const [idPelada, setIdPelada] = useState();
   const [namePelada, setNamePelada] = useState();
+  const [datePelada, setDatePelada] = useState("11/11/11")
+  const [timePelada, setTimePelada] = useState("11:11")
 
 
   useEffect(() =>{
@@ -30,6 +32,7 @@ export default function Home({navigation}) {
       await axios.get(`${baseUrl}/users/1`).then(async response =>{
       setIdPelada(response.data.peladas[0].id);
       setNamePelada(response.data.peladas[0].name);
+
       await AsyncStorage.setItem('@idPelada', JSON.stringify(response.data.peladas[0].id));
     });
   }
@@ -47,7 +50,10 @@ export default function Home({navigation}) {
             }}
             imageStyle={{borderRadius: 20}}
             source={require('../../assets/soccer_card.jpg')}>
-            <Title>{namePelada}</Title>
+            <View style={{flex:1,alignItems:'center'}}>
+              <Title>Pelada: {namePelada}</Title>
+            </View>
+
           </ImageBackground>
         </GroupButton>
       </View>
