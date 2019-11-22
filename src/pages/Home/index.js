@@ -23,8 +23,6 @@ export default function Home({navigation}) {
   const baseUrl = 'http://localhost:8001'
   const [idPelada, setIdPelada] = useState();
   const [namePelada, setNamePelada] = useState();
-  const [datePelada, setDatePelada] = useState("11/11/11")
-  const [timePelada, setTimePelada] = useState("11:11")
 
 
   useEffect(() =>{
@@ -88,5 +86,5 @@ export default function Home({navigation}) {
 
 Home.navigationOptions = {
   tabBarLabel: () => <TabBarLabel>Pelada</TabBarLabel>,
-  tabBarIcon: () => <Icon name="account" size={20} />,
+  tabBarIcon: () => <GroupIcon source={soccerGroup} />,
 };
