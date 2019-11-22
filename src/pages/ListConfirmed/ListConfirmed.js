@@ -34,7 +34,6 @@ export default function ListConfirmed({navigation}) {
     await axios.post(`${baseUrl}/pelada/1/formTeams`, data).then(async response => {
         setRandom(false);
         console.tron.log('ASDASDASDASDSD',response.data);  
-        await AsyncStorage.setItem('@times',response.data);
         navigation.navigate('GameInProgress');
     });
   }

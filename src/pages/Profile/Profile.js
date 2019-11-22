@@ -21,15 +21,13 @@ export default function Profile() {
   const [tricksPoints, setTricksPoints] = useState(0);
   const [passPoints, setPassPoints] = useState(0);
   const [token,setToken] = useState(undefined);
+  const [name,setName]= useState('');
 
   useEffect(()=>{
-    axios.get('http://localhost:8002/users', {
-      headers: {
-        authorization: token
-      }
-    })
+    axios.get('http://localhost:8002/users/1')
     .then(function (response) {
       console.tron.log('LOGADO ',response.data);
+      setName(response.data.name)
       setVelocityPoints(response.data.speed);
       setKickPoints(response.data.kick);
       setDefensePoints(response.data.defense);
@@ -98,7 +96,7 @@ export default function Profile() {
       <View>
         <Title>Estatísticas</Title>
         <StatisticView>
-          <Card title={'Artilheiro'} cardName={'Lucas'} subText={'pts'} />
+          <Card title={'Artilheiro'} cardName={name} subText={'pts'} />
           <Card title={'Vitorias'} cardName={'30'} subText={'Assisitencia'} />
           <Card title={'Artilheiro'} subText={'3'} />
         </StatisticView>

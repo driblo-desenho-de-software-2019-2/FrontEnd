@@ -35,13 +35,21 @@ const Sign = createSwitchNavigator({
 
 });
 
+const Test = createSwitchNavigator({
+  Home,
+  ListConfirmed,
+  RegisterGame,
+  Profile,
+  Game,
+  GameInProgress,
+  
+})
+
 const App = createMaterialTopTabNavigator({
           Profile: {
             screen: Profile,
           },
-          Home: {
-            screen: Home,
-          },
+          Home: Test,
           Home3: {
             screen: GameInProgress,
           },
@@ -90,4 +98,8 @@ const prefix = (Platform.OS === 'ios')
   ? 'driblo://'
   : 'driblo://driblo/';
 
+  Home.navigationOptions = {
+    tabBarLabel: () => <TabBarLabel>Pelada</TabBarLabel>,
+    tabBarIcon: () => <GroupIcon source={soccerGroup} />,
+  };
 export default () => <Routes uriPrefix={prefix} />;

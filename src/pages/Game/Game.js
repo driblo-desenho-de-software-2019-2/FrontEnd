@@ -24,7 +24,7 @@ export default class Game extends React.Component {
     routes: [
       { key: 'first', title: 'Pelada' },
       { key: 'second', title: 'Lista' },
-      { key: 'third', title: '' },
+      { key: 'third', title: 'Partida' },
     ],
   };
 

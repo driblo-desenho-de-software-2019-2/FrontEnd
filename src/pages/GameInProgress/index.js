@@ -32,7 +32,20 @@ export default class GameInProgress extends Component {
     setTimer: false,
     leftPoints: 0,
     rightPoints: 0,
-    playersData: '',
+    playersData: [
+      {name:'Rafael'},
+      {name:'Byron'},
+      {name:'Matheus'},
+      {name:'Luiz'},
+      {name:'Samuel'},
+    ],
+    playersData2: [
+      {name:'Caio'},
+      {name:'Marcelo M'},
+      {name:'Marcelo A'},
+      {name:'Henrique'},
+      {name:'Mota'},
+    ],
     setVisible: false,
     selectedGoalAuthor: [],
     assistenceAuthor: [],
@@ -42,10 +55,10 @@ export default class GameInProgress extends Component {
     await this.loadData();
   }
 
+  
+
   loadData = async () => {
-    const req = await axios.get('http://localhost:8001/pelada/1').then(async(response)=>{
-        const times = await AsyncStorage.getItem('@times');
-        console.log.tron('TIMES!!!!',times)
+    const req = await axios.get('http://localhost:8001/pelada/1').then( response => {
         console.tron.log('respo', response);
     });
     this.setState({playersData: req.data});
@@ -101,7 +114,7 @@ export default class GameInProgress extends Component {
     return (
       <View>
         <SectionedMultiSelect
-          //items={playersData}
+          items={playersData}
           uniqueKey="id"
           selectText="Quem fez?"
           confirmText="Confirmar"
@@ -126,7 +139,7 @@ export default class GameInProgress extends Component {
     return (
       <View>
         <SectionedMultiSelect
-          //items={playersData}
+          items={playersData}
           uniqueKey="id"
           selectText="Assistência"
           confirmText="Confirmar"
@@ -179,22 +192,23 @@ export default class GameInProgress extends Component {
   };
 
   renderPlayersList(teamName) {
-    const {playersData} = this.state;
+    const {playersData, playersData2} = this.state;
 
     let listSide;
-
+    let data;
     if (teamName === 'Time 1') {
       listSide = 'flex-start';
+      data = playersData;
     } else {
       listSide = 'flex-end';
+      data = playersData2;
     }
     return (
       <PlayersList
         contentContainerStyle={{alignItems: listSide}}
-        //data={playersData}
+        data={data}
         renderItem={({item}) => (
           <ListItem
-            leftAvatar={{source: {uri: item.picture}}}
             title={item.name}
             bottomDivider
           />
