@@ -1,6 +1,9 @@
 /* eslint-disable react/react-in-jsx-scope */
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack'
 import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
+import { Platform } from 'react-native'
+import React from 'react'
 
 // páginas
 import SignIn from './pages/SignIn/SignIn';
@@ -9,24 +12,23 @@ import RegisterSkills from './pages/RegisterSkills/RegisterSkills';
 import ListConfirmed from './pages/ListConfirmed/ListConfirmed';
 import Profile from './pages/Profile/Profile';
 import Home from './pages/Home';
-import Game from './pages/Game/Game'
+import Game from './pages/Game/Game';
+import Invitation from './pages/Invitation/Invitation'
+import { Informations } from './pages/Game/styles';
 
 // deve ser verificado este valor para saber ser o usuario está ou não "Logado" e depois renderizar a respectiva tela
 const signedIn = true;
 
-const Routes = createAppContainer(
-  createSwitchNavigator(
-    {
-      Sign: createSwitchNavigator({
+const Sign = createSwitchNavigator({
         SignIn,
         SignUp,
         RegisterSkills,
         ListConfirmed,
         Profile,
         Game,
-      }),
-      App: createMaterialTopTabNavigator(
-        {
+});
+
+const App = createMaterialTopTabNavigator({
           Profile: {
             screen: Game,
           },
@@ -60,13 +62,25 @@ const Routes = createAppContainer(
             },
             showIcon: true,
           },
-        }
-      ),
-    },
-    {
-      initialRouteName: signedIn ? 'App' : 'Sign',
-    }
-  )
+        })
+const Routes = createAppContainer(
+  createSwitchNavigator({
+      App: App,
+      Sign: Sign,
+      Invite: {
+        screen: Invitation,
+        path: 'driblo/:id',
+      },
+
+  },{
+    initialRouteName: signedIn ? 'App' : 'Sign',
+  }
+
+  ),
 );
 
-export default Routes;
+const prefix = (Platform.OS === 'ios')
+  ? 'driblo://'
+  : 'driblo://driblo/';
+
+export default () => <Routes uriPrefix={prefix} />;
