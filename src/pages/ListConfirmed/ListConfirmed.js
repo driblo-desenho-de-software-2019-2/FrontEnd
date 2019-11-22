@@ -1,35 +1,69 @@
 import React, { useState, useEffect } from 'react';
-import { View,FlatList } from 'react-native';
-import { ListItem, Button, Overlay,Text } from "react-native-elements";
+import { View,FlatList,TouchableOpacity,Clipboard } from 'react-native';
+import { ListItem, Button, Overlay,} from "react-native-elements";
 import SmallButtons from '../../components/SmallButton/SmallButtons';
 import FAB from 'react-native-fab';
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import { Title, DateTime, AnswerView,AnswerText} from './styles'
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import AsyncStorage from '@react-native-community/async-storage';
+import { Title,
+          DateTime,
+          AnswerText,
+          ButtonView,
+          LinkText, } from './styles'
+import axios from 'axios';
+
 
 export default function ListConfirmed() {
 
   const [DATA, setData] = useState(undefined);
   const [isLoading, setLoading] = useState(true);
   const [isVisible, setVisible] = useState(false);
+  const [isPresent, setPresent] = useState(false);
   const [isRandom, setRandom] = useState(false);
+  const [isInvite, setInvite] = useState(false);
+  const [gameId, setGameId] = useState(AsyncStorage.getItem('@idPelada'));
+
   const [peladaDate,setPeladaDate] = useState({dia:'XX/XX/XXXX',hora:'XX:XX'});
+  const baseUrl = "http://localhost:8001"
 
-useEffect(()=> {
- const fetchData = async () => {
-    const response = await fetch("http://www.json-generator.com/api/json/get/bRDVHpqLkO?indent=2");
-    const json = await response.json();
-    if(json) {
-      setLoading(false);
-      setData(json);
-    }
-  };
-  fetchData();
-},[])
+  async function copyToClipBoard(){
+    Clipboard.setString(`driblo://driblo/driblo/${gameId}`);
+    setInvite(false);
+  }
 
-if(!isLoading){
+
+  async function handleShuffleTeam(){
+    const data = {players:DATA}
+    await axios.post(`${baseUrl}/pelada/1/formTeams`,data).then(response =>{
+        props.navigation.navigate('GameInProgress')
+    });
+
+  }
+
+ async function handleConfirm(){
+
+    const userPresent = {userPresent: !isPresent};
+    await axios.put(`${baseUrl}/users/3/pelada/1`,userPresent).then(response =>{
+      setVisible(false);
+      setPresent(!isPresent)
+    });
+
+}
+  useEffect(() =>{
+    const fetchData = async () =>{
+      await axios.get(`${baseUrl}/pelada/1/users-presents`).then(response =>{
+                  setData(response.data.users);
+                  setLoading(false);
+    });
+    const peladaId = await AsyncStorage.getItem('@idPelada')
+    console.tron.log('PELADA ID',peladaId)
+    setGameId(peladaId)
+  }
+  fetchData()},[isPresent]);
+
+  if(!isLoading){
   return (
-    <View>
+    <View style={{flex:1}}>
       <Overlay
         onBackdropPress={()=>{setVisible(false)}}
         isVisible={isVisible}
@@ -43,7 +77,7 @@ if(!isLoading){
             justifyContent:'center'
         }}
       >
-            <Title>Confirmar presença</Title>
+            <Title>{!isPresent ? 'Confirmar' : 'Desmarcar'} presença</Title>
             <View style={{flexDirection:'row'}}>
                 <DateTime>Dia : </DateTime>
                 <DateTime>{peladaDate.dia}</DateTime>
@@ -54,14 +88,14 @@ if(!isLoading){
                 <DateTime>{peladaDate.hora}</DateTime>
             </View>
             <View style={{flexDirection:'row'}}>
-                <TouchableOpacity>
-                    <AnswerText>Confirmar</AnswerText>
+                <TouchableOpacity onPress={handleConfirm}>
+                <AnswerText>{!isPresent ? 'Confirmar' : 'Desmarcar'} </AnswerText>
                 </TouchableOpacity>
-                <TouchableOpacity>
+
+               <TouchableOpacity>
                     <AnswerText>Recusar</AnswerText>
                 </TouchableOpacity>
             </View>
-
       </Overlay>
 
       <Overlay
@@ -77,10 +111,11 @@ if(!isLoading){
             justifyContent:'center'
         }}
       >
+
          <Title>Sortear Times</Title>
             <View style={{marginTop:40,flexDirection:'row'}}>
                 <TouchableOpacity>
-                    <AnswerText>Confirmar</AnswerText>
+                    <AnswerText onPress={handleShuffleTeam}>Confirmar</AnswerText>
                 </TouchableOpacity>
                 <TouchableOpacity>
                     <AnswerText>Recusar</AnswerText>
@@ -88,21 +123,43 @@ if(!isLoading){
             </View>
       </Overlay>
 
-      <View style={{backgroundColor:'#f5f5f5',flexDirection:'row',justifyContent:'space-between', height:'12%', alignItems:'center'}}>
-        <View style={{marginLeft:20, marginRight:20,width:'38%',marginBottom:30}}>
+      <Overlay
+        onBackdropPress={()=>{setInvite(false)}}
+        isVisible={isInvite}
+        windowBackgroundColor="rgba(255, 255, 255, .5)"
+        overlayBackgroundColor="#08BD64"
+        width={280}
+        height={250}
+        overlayStyle={{
+            borderRadius:16,
+            alignItems:'center',
+            justifyContent:'center'
+        }}
+      >
+        <Title>Link para convidados</Title>
+        <LinkText>driblo://driblo/driblo/{gameId}</LinkText>
+        <TouchableOpacity>
+          <AnswerText onPress={copyToClipBoard}>Copiar</AnswerText>
+        </TouchableOpacity>
+
+      </Overlay>
+
+      <ButtonView>
+        <View style={{width:'38%'}}>
           <SmallButtons onPress={()=>{setRandom(true)}} iconName={'shuffle'} text='Sortear times'/>
         </View>
-        <View style={{width:'38%',marginBottom:30,marginLeft:25, marginRight:25}}>
-          <SmallButtons iconName="person-add" text='Convidar'/>
+        <View style={{width:'38%'}}>
+          <SmallButtons onPress={() =>{setInvite(true)}} iconName="person-add" text='Convidar'/>
         </View>
-      </View>
+      </ButtonView>
       <FlatList
         data={DATA}
         renderItem={({ item }) =>
           <ListItem
             leftAvatar={{ source: { uri: item.picture } }}
             title={item.name}
-            subtitle = {item.isActive ? 'Confirmado' : 'Não Confirmado' }
+            subtitle = "Confirmado"
+            containerStyle={{backgroundColor:"#f5f5f5"}}
             bottomDivider
           />}
       />
@@ -110,7 +167,7 @@ if(!isLoading){
           snackOffset= {80}
           buttonColor="#10C971"
           iconTextColor="#FFFFFF"
-          onClickAction={() => {setVisible(true)}}
+          onClickAction={() => setVisible(true)}
           visible={true}
           iconTextComponent={<Icon name={'check'} />}
         />

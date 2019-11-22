@@ -43,9 +43,7 @@ export default class GameInProgress extends Component {
   }
 
   loadData = async () => {
-    const req = await axios.get(
-      'http://www.json-generator.com/api/json/get/bRDVHpqLkO?indent=2'
-    );
+    const req = await axios.get('http://localhost:8001');
     this.setState({playersData: req.data});
 
     console.tron.log('data', req.data);
@@ -156,10 +154,7 @@ export default class GameInProgress extends Component {
           <View>{this.playerPicker()}</View>
           <View>{this.selectAssistenceAuthor()}</View>
           <View style={{flexDirection: 'row'}}>
-            <TouchableOpacity
-              onPress={() => {
-                this.setState({setVisible: false});
-              }}>
+            <TouchableOpacity onPress={() => {}}>
               <AnswerText>Confirmar</AnswerText>
             </TouchableOpacity>
             <TouchableOpacity>
@@ -169,6 +164,16 @@ export default class GameInProgress extends Component {
         </View>
       </Overlay>
     );
+  };
+
+  confirmGoal = async () => {
+    const {selectedGoalAuthor, assistenceAuthor} = this.state;
+
+    const req = await axios.post(
+      ''
+    );
+
+    this.setState({setVisible: false});
   };
 
   renderPlayersList(teamName) {
