@@ -1,7 +1,7 @@
 /* eslint-disable global-require */
 /* eslint-disable react/prefer-stateless-function */
 import React, {Component, useState, useEffect} from 'react';
-import {View, ImageBackground} from 'react-native';
+import {View, ImageBackground, Text} from 'react-native';
 import FAB from 'react-native-fab';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import axios from 'axios'
@@ -48,7 +48,10 @@ export default function Home({navigation}) {
             }}
             imageStyle={{borderRadius: 20}}
             source={require('../../assets/soccer_card.jpg')}>
-            <Title>{namePelada}</Title>
+            <View style={{flex:1,alignItems:'center'}}>
+              <Title>Pelada: {namePelada}</Title>
+            </View>
+
           </ImageBackground>
         </GroupButton>
       </View>
@@ -83,5 +86,5 @@ export default function Home({navigation}) {
 
 Home.navigationOptions = {
   tabBarLabel: () => <TabBarLabel>Pelada</TabBarLabel>,
-  tabBarIcon: () => <Icon name="account" size={20} />,
+  tabBarIcon: () => <GroupIcon source={soccerGroup} />,
 };
