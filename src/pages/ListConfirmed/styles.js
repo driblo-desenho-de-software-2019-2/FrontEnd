@@ -30,3 +30,9 @@ export const ButtonView = styled.View`
     height: 12%;
     align-items: center;
 `;
+export const LinkText = styled.Text`
+    margin-top:20;
+    color:rgb(255,255,255)
+    font-size: 20;
+    margin-horizontal:10;
+`;

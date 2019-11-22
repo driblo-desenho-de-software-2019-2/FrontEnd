@@ -14,7 +14,6 @@ import Profile from './pages/Profile/Profile';
 import Home from './pages/Home';
 import Game from './pages/Game/Game';
 import Invitation from './pages/Invitation/Invitation'
-import { Informations } from './pages/Game/styles';
 
 // deve ser verificado este valor para saber ser o usuario está ou não "Logado" e depois renderizar a respectiva tela
 const signedIn = true;

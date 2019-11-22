@@ -11,6 +11,7 @@
     "android-dev": "react-native run-android && yarn start"
   },
   "dependencies": {
+    "@react-native-community/async-storage": "^1.6.3",
     "@react-native-community/slider": "^2.0.3",
     "axios": "^0.19.0",
     "link": "^0.1.5",
