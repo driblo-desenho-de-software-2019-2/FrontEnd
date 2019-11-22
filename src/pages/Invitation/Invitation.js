@@ -12,9 +12,8 @@ export default function Invitation(props) {
   const baseUrl = 'http://localhost:8001'
 
   async function handleConfirm () {
-
     const data = {userId: 1, peladaId: params.id}
-    await axios.post(`${baseUrl}/peladaUser/`,data).then(response =>{
+    await axios.post(`${baseUrl}/peladaUser/`,data).then( response =>{
       props.navigation.navigate('Home');
     })
   }

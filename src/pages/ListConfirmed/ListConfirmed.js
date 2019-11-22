@@ -10,6 +10,8 @@ import { Title,
           ButtonView } from './styles'
 
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import axios from 'axios';
+
 
 export default function ListConfirmed() {
 
@@ -18,22 +20,22 @@ export default function ListConfirmed() {
   const [isVisible, setVisible] = useState(false);
   const [isRandom, setRandom] = useState(false);
   const [peladaDate,setPeladaDate] = useState({dia:'XX/XX/XXXX',hora:'XX:XX'});
+  const baseUrl = "http://localhost:8001"
 
-useEffect(()=> {
- const fetchData = async () => {
-    const response = await fetch("http://www.json-generator.com/api/json/get/bRDVHpqLkO?indent=2");
-    const json = await response.json();
-    if(json) {
-      setLoading(false);
-      setData(json);
-    }
-  };
-  fetchData();
-},[])
 
-if(!isLoading){
+
+  useEffect(() =>{
+    const fetchData = async () =>{
+      await axios.get(`${baseUrl}/pelada/1/users-presents`).then(response =>{
+                  setData(response.data.users);
+                  setLoading(false);
+    });
+  }
+  fetchData()},[]);
+
+  if(!isLoading){
   return (
-    <View>
+    <View style={{flex:1}}>
       <Overlay
         onBackdropPress={()=>{setVisible(false)}}
         isVisible={isVisible}
@@ -58,7 +60,7 @@ if(!isLoading){
                 <DateTime>{peladaDate.hora}</DateTime>
             </View>
             <View style={{flexDirection:'row'}}>
-                <TouchableOpacity>
+                <TouchableOpacity >
                     <AnswerText>Confirmar</AnswerText>
                 </TouchableOpacity>
                 <TouchableOpacity>
@@ -106,7 +108,7 @@ if(!isLoading){
           <ListItem
             leftAvatar={{ source: { uri: item.picture } }}
             title={item.name}
-            subtitle = {item.isActive ? 'Confirmado' : 'Não Confirmado' }
+            subtitle = "Confirmado"
             containerStyle={{backgroundColor:"#f5f5f5"}}
             bottomDivider
           />}
