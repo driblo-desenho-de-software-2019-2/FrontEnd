@@ -26,6 +26,7 @@ const Sign = createSwitchNavigator({
         ListConfirmed,
         Profile,
         Game,
+
 });
 
 const App = createMaterialTopTabNavigator({

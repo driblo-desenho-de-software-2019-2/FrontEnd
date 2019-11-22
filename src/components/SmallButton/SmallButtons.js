@@ -18,15 +18,3 @@ export default function SmallButtons({iconName,text, ...rest}) {
   );
 }
 
-const styles = StyleSheet.create({
-    degrade:{
-
-        height:33,
-        flexDirection:'row',
-        alignItems:'center',
-        justifyContent:'center',
-        borderRadius: 20,
-        marginTop:30,
-    },
-
-})
