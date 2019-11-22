@@ -66,15 +66,15 @@ export default function GameStats() {
                         <TeamsText>Time</TeamsText>
                         <TeamsText>A</TeamsText>
                       </View>
-                      <ScoreText>10</ScoreText>
+                      <ScoreText>0</ScoreText>
                     </View>
                     <ScoreText>X</ScoreText>
                     <View style={{flexDirection:'row-reverse'}}>
                       <View style={{flexDirection:'column',justifyContent:'center', alignItems:'center',marginHorizontal:30}} >
                         <TeamsText>Time</TeamsText>
-                        <TeamsText>A</TeamsText>
+                        <TeamsText>B</TeamsText>
                       </View>
-                      <ScoreText>1</ScoreText>
+                      <ScoreText>0</ScoreText>
                     </View>
                   </View>
 

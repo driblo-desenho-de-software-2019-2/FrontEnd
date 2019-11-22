@@ -21,7 +21,7 @@ export default function ListConfirmed() {
   const [isPresent, setPresent] = useState(false);
   const [isRandom, setRandom] = useState(false);
   const [isInvite, setInvite] = useState(false);
-  const [gameId, setGameId] = useState();
+  const [gameId, setGameId] = useState(AsyncStorage.getItem('@idPelada'));
 
   const [peladaDate,setPeladaDate] = useState({dia:'XX/XX/XXXX',hora:'XX:XX'});
   const baseUrl = "http://localhost:8001"
@@ -34,8 +34,8 @@ export default function ListConfirmed() {
 
   async function handleShuffleTeam(){
     const data = {players:DATA}
-    await axios.post(`${baseUrl}/pelada/${gameId}/formTeams`,data).then(response =>{
-
+    await axios.post(`${baseUrl}/pelada/1/formTeams`,data).then(response =>{
+        props.navigation.navigate('GameInProgress')
     });
 
   }
@@ -43,7 +43,7 @@ export default function ListConfirmed() {
  async function handleConfirm(){
 
     const userPresent = {userPresent: !isPresent};
-    await axios.put(`${baseUrl}/users/3/pelada/${gameId}`,userPresent).then(response =>{
+    await axios.put(`${baseUrl}/users/3/pelada/1`,userPresent).then(response =>{
       setVisible(false);
       setPresent(!isPresent)
     });
@@ -51,11 +51,12 @@ export default function ListConfirmed() {
 }
   useEffect(() =>{
     const fetchData = async () =>{
-      await axios.get(`${baseUrl}/pelada/${gameId}/users-presents`).then(response =>{
+      await axios.get(`${baseUrl}/pelada/1/users-presents`).then(response =>{
                   setData(response.data.users);
                   setLoading(false);
     });
     const peladaId = await AsyncStorage.getItem('@idPelada')
+    console.tron.log('PELADA ID',peladaId)
     setGameId(peladaId)
   }
   fetchData()},[isPresent]);

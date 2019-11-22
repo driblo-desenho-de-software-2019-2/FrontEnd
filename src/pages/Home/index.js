@@ -30,6 +30,7 @@ export default function Home({navigation}) {
       await axios.get(`${baseUrl}/users/1`).then(async response =>{
       setIdPelada(response.data.peladas[0].id);
       setNamePelada(response.data.peladas[0].name);
+      console.tron.log('ID',response.data.peladas[0].id)
       await AsyncStorage.setItem('@idPelada', JSON.stringify(response.data.peladas[0].id));
     });
   }
