@@ -1,12 +1,13 @@
 /* eslint-disable react/state-in-constructor */
 /* eslint-disable react/prefer-stateless-function */
 import React, {Component} from 'react';
-import {Alert, View, ScrollView} from 'react-native';
-import {ListItem} from 'react-native-elements';
+import {Alert, View, ScrollView, TouchableOpacity, Text} from 'react-native';
+import {ListItem, Overlay} from 'react-native-elements';
 
 import axios from 'axios';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CountDown from 'react-native-countdown-component';
+import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 
 import SmallButtons from '../../components/SmallButton/SmallButtons';
 
@@ -22,6 +23,8 @@ import {
   PlayersListView,
   TeamName,
   PlayersList,
+  AnswerText,
+  GoalText,
 } from './styles';
 
 export default class GameInProgress extends Component {
@@ -30,6 +33,9 @@ export default class GameInProgress extends Component {
     leftPoints: 0,
     rightPoints: 0,
     playersData: '',
+    setVisible: false,
+    selectedGoalAuthor: [],
+    assistenceAuthor: [],
   };
 
   async componentDidMount() {
@@ -76,6 +82,93 @@ export default class GameInProgress extends Component {
     } else {
       this.setState({rightPoints: rightPoints + 1});
     }
+
+    this.setState({setVisible: true});
+  };
+
+  onSelectedItemsChangeGoalAuthor = async selectedGoalAuthor => {
+    await this.setState({selectedGoalAuthor});
+    // eslint-disable-next-line react/destructuring-assignment
+    console.tron.log(this.state.selectedGoalAuthor);
+  };
+
+  playerPicker = () => {
+    const {selectedGoalAuthor, playersData} = this.state;
+    return (
+      <View>
+        <SectionedMultiSelect
+          items={playersData}
+          uniqueKey="id"
+          selectText="Quem fez?"
+          confirmText="Confirmar"
+          searchPlaceholderText="Procurar Nome..."
+          colors={{primary: '#07D7A5', success: '#07D7A5'}}
+          onSelectedItemsChange={this.onSelectedItemsChangeGoalAuthor}
+          selectedItems={selectedGoalAuthor}
+          single={true}
+        />
+      </View>
+    );
+  };
+
+  onSelectedItemsChangeAssistenceAuthor = async assistenceAuthor => {
+    await this.setState({assistenceAuthor});
+    // eslint-disable-next-line react/destructuring-assignment
+    console.tron.log(this.state.assistenceAuthor);
+  };
+
+  selectAssistenceAuthor = () => {
+    const {assistenceAuthor, playersData} = this.state;
+    return (
+      <View>
+        <SectionedMultiSelect
+          items={playersData}
+          uniqueKey="id"
+          selectText="Assistência"
+          confirmText="Confirmar"
+          searchPlaceholderText="Procurar Nome..."
+          colors={{primary: '#07D7A5', success: '#07D7A5'}}
+          onSelectedItemsChange={this.onSelectedItemsChangeAssistenceAuthor}
+          selectedItems={assistenceAuthor}
+          single={true}
+        />
+      </View>
+    );
+  };
+
+  GoalCard = () => {
+    const {setVisible} = this.state;
+
+    return (
+      <Overlay
+        isVisible={setVisible}
+        windowBackgroundColor="rgba(255, 255, 255, .5)"
+        overlayBackgroundColor="#08BD64"
+        height={350}
+        width={280}
+        overlayStyle={{
+          borderRadius: 16,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+        <View>
+          <GoalText>GOOL</GoalText>
+          <View>{this.playerPicker()}</View>
+          <View>{this.selectAssistenceAuthor()}</View>
+          <View style={{flexDirection: 'row'}}>
+            <TouchableOpacity
+              onPress={() => {
+                this.setState({setVisible: false});
+              }}>
+              <AnswerText>Confirmar</AnswerText>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <AnswerText>Cancelar</AnswerText>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Overlay>
+    );
   };
 
   renderPlayersList(teamName) {
@@ -158,6 +251,7 @@ export default class GameInProgress extends Component {
             {this.renderPlayersList('Time 1')}
             {this.renderPlayersList('Time 2')}
           </PlayersListView>
+          {this.GoalCard()}
         </Container>
       </ScrollView>
     );

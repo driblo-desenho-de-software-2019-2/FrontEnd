@@ -82,6 +82,24 @@ export const Points = styled.Text`
   margin-bottom: 30px;
 `;
 
+export const AnswerText = styled.Text`
+    margin-top:40;
+    color:rgb(255,255,255)
+    font-size: 25;
+    margin-horizontal:10;
+`;
+
+export const GoalText = styled.Text`
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 20px;
+  text-align: center;
+  color: #FFFFFF;
+  padding-top: 30px;
+`;
+
 // Buttons
 export const StartTimerButton = styled.TouchableOpacity``;
 
