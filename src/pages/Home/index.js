@@ -73,9 +73,10 @@ export default function Home({navigation}) {
     <View style={{marginTop: 120}}>
       <FAB
         snackOffset={80}
+        onClickAction={()=>{}}
         buttonColor="#10C971"
         iconTextColor="#FFFFFF"
-        onClickAction={() => {}}
+        onClickAction={() => {navigation.navigate('RegisterGame')}}
         visible
       />
     </View>

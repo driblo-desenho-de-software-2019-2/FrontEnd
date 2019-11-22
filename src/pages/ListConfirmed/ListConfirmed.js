@@ -8,7 +8,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import {Title, DateTime, AnswerText, ButtonView, LinkText} from './styles';
 import axios from 'axios';
 
-export default function ListConfirmed() {
+export default function ListConfirmed({navigation}) {
   const [DATA, setData] = useState(undefined);
   const [isLoading, setLoading] = useState(true);
   const [isVisible, setVisible] = useState(false);
@@ -28,11 +28,14 @@ export default function ListConfirmed() {
     setInvite(false);
   }
 
-  async function handleShuffleTeam() {
-    const {navigation} = this.props;
+  const handleShuffleTeam = async () => {
+    console.tron.log('ASDASDASDASDSD'); 
     const data = {players: DATA};
-    await axios.post(`${baseUrl}/pelada/1/formTeams`, data).then(response => {
-      navigation.navigate('GameInProgress');
+    await axios.post(`${baseUrl}/pelada/1/formTeams`, data).then(async response => {
+        setRandom(false);
+        console.tron.log('ASDASDASDASDSD',response.data);  
+        await AsyncStorage.setItem('@times',response.data);
+        navigation.navigate('GameInProgress');
     });
   }
 
@@ -112,10 +115,10 @@ export default function ListConfirmed() {
           }}>
           <Title>Sortear Times</Title>
           <View style={{marginTop: 40, flexDirection: 'row'}}>
-            <TouchableOpacity>
-              <AnswerText onPress={handleShuffleTeam}>Confirmar</AnswerText>
+            <TouchableOpacity onPress={handleShuffleTeam}>
+              <AnswerText>Confirmar</AnswerText>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=>{setRandom(false)}}>
               <AnswerText>Recusar</AnswerText>
             </TouchableOpacity>
           </View>

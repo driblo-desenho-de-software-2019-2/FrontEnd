@@ -4,6 +4,7 @@ import { TabView,TabBar, SceneMap } from 'react-native-tab-view';
 import { View, StyleSheet, Dimensions } from 'react-native';
 import GameStats from './GameStats'
 import ListConfirmed from '../ListConfirmed/ListConfirmed'
+import GameInProgress from '../GameInProgress/index'
 
 
 const FirstRoute = () => (
@@ -14,7 +15,7 @@ const SecondRoute = () => (
   <ListConfirmed />
 );
 const ThirdRoute = () => (
-  <View style={[styles.scene, { backgroundColor: '#f5f5f5' }]} />
+  <GameInProgress/>
 );
 
 export default class Game extends React.Component {
@@ -23,7 +24,7 @@ export default class Game extends React.Component {
     routes: [
       { key: 'first', title: 'Pelada' },
       { key: 'second', title: 'Lista' },
-      { key: 'third', title: 'Regras' },
+      { key: 'third', title: '' },
     ],
   };
 

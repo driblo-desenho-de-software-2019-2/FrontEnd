@@ -16,15 +16,19 @@ import Game from './pages/Game/Game';
 import Invitation from './pages/Invitation/Invitation'
 import RegisterGame from './pages/RegisterGame/RegisterGame';
 import GameInProgress from './pages/GameInProgress/index';
+import AsyncStorage from '@react-native-community/async-storage';
 
 // deve ser verificado este valor para saber ser o usuario está ou não "Logado" e depois renderizar a respectiva tela
-const signedIn = true;
+let signedIn = false;
+const token = AsyncStorage.getItem('@token');
+
 
 const Sign = createSwitchNavigator({
         SignIn,
         SignUp,
         RegisterSkills,
         ListConfirmed,
+        RegisterGame,
         Profile,
         Game,
         GameInProgress,
@@ -33,13 +37,13 @@ const Sign = createSwitchNavigator({
 
 const App = createMaterialTopTabNavigator({
           Profile: {
-            screen: Game,
+            screen: Profile,
           },
           Home: {
             screen: Home,
           },
           Home3: {
-            screen: Home,
+            screen: GameInProgress,
           },
         },
         {

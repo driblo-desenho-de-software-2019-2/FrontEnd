@@ -42,7 +42,7 @@ export default function RegisterGame({ navigation }) {
         .then(response => {
           if (response.status === 200) {
               console.tron.log('RESPONSE: ',response.data )
-              //navigation.navigate('Home');
+              navigation.navigate('Home');
           }
         })
         .catch(error => {
@@ -82,7 +82,7 @@ export default function RegisterGame({ navigation }) {
             <DatePicker getData={(x)=>{getData(x)}} mode={'date'}/>
             <DatePicker getTime={(y)=>{getTime(y)}} mode={'time'}/>
 
-            <SButton onPress={handleRegister} text={'Cadastrar'} />
+            <SButton onPress={()=>{navigation.navigate('Home')}} text={'Cadastrar'} />
         </ImageBackground>
     </LinearGradient>
   );

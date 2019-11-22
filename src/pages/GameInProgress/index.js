@@ -3,7 +3,7 @@
 import React, {Component} from 'react';
 import {Alert, View, ScrollView, TouchableOpacity, Text} from 'react-native';
 import {ListItem, Overlay} from 'react-native-elements';
-
+import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CountDown from 'react-native-countdown-component';
@@ -43,11 +43,17 @@ export default class GameInProgress extends Component {
   }
 
   loadData = async () => {
-    const req = await axios.get('http://localhost:8001');
+    const req = await axios.get('http://localhost:8001/pelada/1').then(async(response)=>{
+        const times = await AsyncStorage.getItem('@times');
+        console.log.tron('TIMES!!!!',times)
+        console.tron.log('respo', response);
+    });
     this.setState({playersData: req.data});
 
     console.tron.log('data', req.data);
   };
+
+  
 
   renderTimer = () => {
     return (
@@ -95,7 +101,7 @@ export default class GameInProgress extends Component {
     return (
       <View>
         <SectionedMultiSelect
-          items={playersData}
+          //items={playersData}
           uniqueKey="id"
           selectText="Quem fez?"
           confirmText="Confirmar"
@@ -120,7 +126,7 @@ export default class GameInProgress extends Component {
     return (
       <View>
         <SectionedMultiSelect
-          items={playersData}
+          //items={playersData}
           uniqueKey="id"
           selectText="Assistência"
           confirmText="Confirmar"
@@ -154,10 +160,10 @@ export default class GameInProgress extends Component {
           <View>{this.playerPicker()}</View>
           <View>{this.selectAssistenceAuthor()}</View>
           <View style={{flexDirection: 'row'}}>
-            <TouchableOpacity onPress={() => {}}>
+            <TouchableOpacity onPress={() => {this.confirmGoal()}}>
               <AnswerText>Confirmar</AnswerText>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => {this.confirmGoal()}}>
               <AnswerText>Cancelar</AnswerText>
             </TouchableOpacity>
           </View>
@@ -168,10 +174,6 @@ export default class GameInProgress extends Component {
 
   confirmGoal = async () => {
     const {selectedGoalAuthor, assistenceAuthor} = this.state;
-
-    const req = await axios.post(
-      ''
-    );
 
     this.setState({setVisible: false});
   };
@@ -189,7 +191,7 @@ export default class GameInProgress extends Component {
     return (
       <PlayersList
         contentContainerStyle={{alignItems: listSide}}
-        data={playersData}
+        //data={playersData}
         renderItem={({item}) => (
           <ListItem
             leftAvatar={{source: {uri: item.picture}}}
@@ -215,6 +217,7 @@ export default class GameInProgress extends Component {
               {setTimer ? null : (
                 <SmallButtons
                   onPress={() => {
+                    this.loadData
                     this.setState({setTimer: true});
                   }}
                   iconName="timer"
